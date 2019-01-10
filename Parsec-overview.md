@@ -22,7 +22,7 @@ From sources:
 % cd parsec-cloud
 % pip3 install -e .[all]
 % python3 setup.py generate_pyqt_forms
-% python setup.py generate_pyqt_resources_bundle
+% python3 setup.py generate_pyqt_resources_bundle
 ```
 
 Backend
