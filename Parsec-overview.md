@@ -83,7 +83,7 @@ password:
 billy@laptop's drive mounted at ~/parsec_mnt/billy@laptop
 ```
 
-Note that only a single core context should run at a time for a given device. This means the command above needs to be interrupted before running another command or using the GUI as `billy@laptop`.
+Note that only a single core context should run at a time for a given device. This means the command above needs to be stopped before running another command or using the GUI as `billy@laptop`.
 
 Browsing the mount point:
 
