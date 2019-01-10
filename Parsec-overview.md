@@ -58,9 +58,9 @@ Organization url: ws://localhost:6777/vcorp?rvk=CA4XUEKH6V2YTUG5GJWKXSU3F7GDHHT7
 ```
 
 In this example:
- - billy is the user id
- - laptop is the device name
- - billy@laptop is the device id
+ - `billy` is the user id
+ - `laptop` is the device name
+ - `billy@laptop` is the device id
 
 User and device private keys have been created and stored in `~/.config/parsec/devices/billy@laptop/billy@laptop.keys`:
 
