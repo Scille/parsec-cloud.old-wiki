@@ -1,6 +1,3 @@
-Parsec overview
-===============
-
 Requirements
 ------------
 
@@ -83,7 +80,7 @@ The user drive can now be mounted on the system.
 ```console
 % parsec core run -D billy@laptop
 password:
-billy@laptop's drive mounted at /home/vinmic/parsec_mnt/billy@laptop
+billy@laptop's drive mounted at ~/parsec_mnt/billy@laptop
 ```
 
 Note that only a single core context should run at a time for a given device. This means the command above needs to be interrupted before running another command or using the GUI as `billy@laptop`.
@@ -99,7 +96,7 @@ Browsing the mount point:
 Creating a file:
 
 ```console
-% echo ':)' > /home/vinmic/parsec_mnt/billy@laptop/hello/world.txt
+% echo ':)' > ~/parsec_mnt/billy@laptop/hello/world.txt
 ```
 
 Now stop the `parsec core run` command and invite a new device, `pc`:
@@ -130,7 +127,7 @@ Now mount the new user drive:
 ```console
 % parsec core run -D billy@pc
 password:
-billy@pc's drive mounted at /home/vinmic/parsec_mnt/billy@pc
+billy@pc's drive mounted at ~/parsec_mnt/billy@pc
 ```
 
 And browse the new previously created file:
@@ -145,10 +142,10 @@ Note that it takes a couple of seconds before a change in given device is propag
 ```console
 % echo ':D' >  ~/parsec_mnt/billy@pc/hello/world.txt
 % # Laptop hasn't been updated yet
-% cat parsec_mnt/billy@laptop/hello/world.txt
+% cat ~/parsec_mnt/billy@laptop/hello/world.txt
 :)
 % # Laptop is now updated!
-% cat parsec_mnt/billy@laptop/hello/world.txt
+% cat ~/parsec_mnt/billy@laptop/hello/world.txt
 :D
 ```
 
