@@ -41,7 +41,7 @@ Core
 First step is to create an organization:
 
 ```console
-% parsec core create_organization -B ws://localhost:6777 vcorp
+% parsec core create_organization -B ws://localhost:6777 -T CCDCC27B6108438D99EF8AF5E847C3BB vcorp
 Creating organization in backend ✔
 Bootstrap organization url: ws://localhost:6777/vcorp?bootstrap-token=8e0c869b206feaf82eb5568533535d902486d4f3d789f47fdb3ce61735fee2a7
 ```
@@ -65,20 +65,20 @@ In this example:
 User and device private keys have been created and stored in `~/.config/parsec/devices/billy@laptop/billy@laptop.keys`:
 
 ```console
-% cat ~/.config/parsec/devices/billy@laptop/billy@laptop.keys
+% cat "~/.config/parsec/devices/billy@laptop/vcorp#billy@laptop.keys"
 {"ciphertext": {"__type__": "bytes", "__value__": "[...]"}, "salt": {"__type__": "bytes", "__value__": "[...]"}, "type": "password"}
 ```
 
 The root of a user drive can only be populated with workspaces, created with the following command:
 
 ```console
-% parsec core create_workspace -D billy@laptop hello
+% parsec core create_workspace -D vcorp:billy@laptop hello
 ```
 
 The user drive can now be mounted on the system.
 
 ```console
-% parsec core run -D billy@laptop
+% parsec core run -D vcorp:billy@laptop
 password:
 billy@laptop's drive mounted at ~/parsec_mnt/billy@laptop
 ```
@@ -102,7 +102,7 @@ Creating a file:
 Now stop the `parsec core run` command and invite a new device, `pc`:
 
 ```console
-% parsec core invite_device -D billy@laptop pc
+% parsec core invite_device -D vcorp:billy@laptop pc
 password:
 Backend url: ws://localhost:6777/vcorp?rvk=CA4XUEKH6V2YTUG5GJWKXSU3F7GDHHT7O4KCATV4ZWNGR34NX6WAssss
 Invitation token: 100eed5f187d28c8
