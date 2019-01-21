@@ -65,8 +65,8 @@ In this example:
 User and device private keys have been created and stored in `~/.config/parsec/devices/billy@laptop/billy@laptop.keys`:
 
 ```console
-% cat "~/.config/parsec/devices/billy@laptop/vcorp#billy@laptop.keys"
-{"ciphertext": {"__type__": "bytes", "__value__": "[...]"}, "salt": {"__type__": "bytes", "__value__": "[...]"}, "type": "password"}
+% ls ~/.config/parsec/devices/vcorp\#billy@laptop
+vcorp#billy@laptop.keys
 ```
 
 The root of a user drive can only be populated with workspaces, created with the following command:
@@ -125,7 +125,7 @@ The invite command should be finished and the `billy@laptop` device can be resta
 Now mount the new user drive:
 
 ```console
-% parsec core run -D billy@pc
+% parsec core run -D vcorp:billy@pc
 password:
 billy@pc's drive mounted at ~/parsec_mnt/billy@pc
 ```
