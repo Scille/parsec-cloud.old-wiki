@@ -54,7 +54,7 @@ The following transactions target an open file represented by its file descripto
 #### File descriptor:
 * **fd_read**: read data from the given file descriptor and **move its cursor**
 * **fd_write**: write data to the given file descriptor and **move its cursor**
-* **fd_truncate**: change the size of a file descriptor, padding with `\x00` if necessary
+* **fd_resize**: change the size of a file descriptor, padding with `\x00` if necessary
 * **fd_flush**: currently a no-op operation, since data 
 * **fd_close**: close the file descriptor
 
@@ -67,8 +67,8 @@ FUSE operations must specifically behave as described in [fuse_lowlevel.h](https
 
 #### Info:
 
-* **getattr** - uses `stat`
-* **readdir** - uses `stat`
+* **getattr** - uses `get_info`
+* **readdir** - uses `get_info`
 
 #### Move entry:
 * **rename** - uses `move(overwrite=True)`
@@ -85,7 +85,7 @@ FUSE operations must specifically behave as described in [fuse_lowlevel.h](https
 #### File descriptor:
 * **read** - uses `fd_read`
 * **write** - uses `fd_write`
-* **truncate** - uses `fd_truncate`
+* **truncate** - uses `fd_resize`
 * **flush/fsync** - uses `fd_flush`
 * **release** - uses `fd_close`
 
@@ -95,10 +95,10 @@ Winfsp operations
 Winfsp operations must specifically behave as described in [winfsp.h](https://github.com/billziss-gh/winfsp/wiki/WinFsp-API-winfsp.h). They're bound to a single file system transaction, except for `close` that might run both `fd_close` et `file_delete` in some cases.
 
 #### Info:
-* **get_security_by_name** - uses `stat`
-* **get_file_info** - uses `stat`
-* **can_delete** - uses `stat`
-* **read_directory** - uses `stat`
+* **get_security_by_name** - uses `get_info`
+* **get_file_info** - uses `get_info`
+* **can_delete** - uses `get_info`
+* **read_directory** - uses `get_info`
 
 #### Rename entry:
 * **rename** - uses `move(overwrite=False)`
@@ -115,7 +115,7 @@ Winfsp operations must specifically behave as described in [winfsp.h](https://gi
 #### File descriptor:
 * **read** - uses `fd_read`
 * **write** - uses `fd_write`
-* **set_file_size** - uses `fd_truncate`
+* **set_file_size** - uses `fd_resize`
 * **flush** - uses `fd_flush`
 * **close** - uses `fd_close`
 
@@ -125,9 +125,9 @@ Workspace path interface
 This interface is used to access a workspace file system from other parts of the application. It mimics the [pathlib.Path method interface](https://docs.python.org/3.7/library/pathlib.html#methods) for both naming and behavior.
 
 #### Info:
-- **stat** -> stat
-- **is_dir** -> stat
-- **is_file** -> stat
+- **stat** - uses `get_info`
+- **is_dir** - uses `get_info`
+- **is_file** - uses `get_info`
 
 #### Rename:
 - **rename** - uses `rename`
