@@ -18,31 +18,29 @@ List of file system transactions
 
 The following transactions target entries represented by their file system path:
 
-#### Information:
-* **get_info**: returns a dictionary with all the information about the given entry
-
-#### Rename entry:
-* **rename (overwrite=True)**: rename the given entry, possibly overwriting its destination
-* **rename (overwrite=False)**: rename the given entry, failing if the destination already exists
+#### Entry transactions:
+* **entry_info**: returns a dictionary with all the information about the given entry
+* **entry_rename (overwrite=True)**: rename the given entry, possibly overwriting its destination
+* **entry_rename (overwrite=False)**: rename the given entry, failing if the destination already exists
 
 *Note 1: it is not possible to rename to another directory, as this would break the locality principle*
 
 *Note 2: these operations affects the parent of the entry to rename and not the entry itself*
 
-#### Folder entry:
+#### Folder transactions:
 * **folder_create**: create a new folder corresponding to the given entry
 * **folder_delete**: delete the given folder corresponding to the given entry, failing if it is non-empty
 
 *Note 3: these operations affects the parent of the entry to create/delete and not the entry itself*
 
-#### File entry:
+#### File transactions:
 * **file_create**: create a new file corresponding to the given entry and returns an open file descriptor
 * **file_open**: open the file corresponding to the given entry and returns a file descriptor
 * **file_delete**: delete the file corresponding to the given entry
 
 *Note 4: these operations affects the parent of the entry to create/delete and not the entry itself*
 
-#### Synchronization:
+#### Synchronization transactions:
 
 * **file_sync**: synchronize the file corresponding to the given entry with the remote
 * **folder_sync**: synchronize the folder corresponding to the given entry with the remote
@@ -51,7 +49,7 @@ The following transactions target entries represented by their file system path:
 
 The following transactions target an open file represented by its file descriptor: 
 
-#### File descriptor:
+#### File descriptor transactions:
 * **fd_read**: read data from the given file descriptor and **move its cursor**
 * **fd_write**: write data to the given file descriptor and **move its cursor**
 * **fd_resize**: change the size of a file descriptor, padding with `\x00` if necessary
@@ -65,24 +63,22 @@ FUSE operations
 
 FUSE operations must specifically behave as described in [fuse_lowlevel.h](https://github.com/libfuse/libfuse/blob/fuse_2_9_5/include/fuse_lowlevel.h). They're bound to a single file system transaction:
 
-#### Info:
+#### Entry operations:
 
-* **getattr** - uses `get_info`
-* **readdir** - uses `get_info`
+* **getattr** - uses `entry_info`
+* **readdir** - uses `entry_info`
+* **rename** - uses `entry_rename(overwrite=True)`
 
-#### Move entry:
-* **rename** - uses `move(overwrite=True)`
-
-#### Entry:
+#### Folder operations:
 * **mkdir** - uses `folder_create`
 * **rmdir** - uses `folder_delete`
 
-#### File entry:
+#### File operations:
 * **create** - uses `file_create`
 * **open** - uses `file_open`
 * **unlink** - uses `file_delete`
 
-#### File descriptor:
+#### File descriptor operations:
 * **read** - uses `fd_read`
 * **write** - uses `fd_write`
 * **truncate** - uses `fd_resize`
@@ -94,25 +90,23 @@ Winfsp operations
 
 Winfsp operations must specifically behave as described in [winfsp.h](https://github.com/billziss-gh/winfsp/wiki/WinFsp-API-winfsp.h). They're bound to a single file system transaction, except for `close` that might run both `fd_close` et `file_delete` in some cases.
 
-#### Info:
-* **get_security_by_name** - uses `get_info`
-* **get_file_info** - uses `get_info`
-* **can_delete** - uses `get_info`
-* **read_directory** - uses `get_info`
+#### Entry operations:
+* **get_security_by_name** - uses `entry_info`
+* **get_file_info** - uses `entry_info`
+* **can_delete** - uses `entry_info`
+* **read_directory** - uses `entry_info`
+* **rename** - uses `entry_rename(overwrite=False)`
 
-#### Rename entry:
-* **rename** - uses `move(overwrite=False)`
-
-#### Folder Entry:
+#### Folder operations:
 * **create** - uses `folder_create`
 * **close** - uses `folder_delete`
 
-#### File Entry:
+#### File operations:
 * **create** - uses `file_create`
 * **open** - uses `open`
 * **close** - uses `delete`
 
-#### File descriptor:
+#### File descriptor operations:
 * **read** - uses `fd_read`
 * **write** - uses `fd_write`
 * **set_file_size** - uses `fd_resize`
@@ -124,22 +118,20 @@ Workspace path interface
 
 This interface is used to access a workspace file system from other parts of the application. It mimics the [pathlib.Path method interface](https://docs.python.org/3.7/library/pathlib.html#methods) for both naming and behavior.
 
-#### Info:
-- **stat** - uses `get_info`
-- **is_dir** - uses `get_info`
-- **is_file** - uses `get_info`
-
-#### Rename:
-- **rename** - uses `rename`
-- **move** - uses `rename` or a recursive copy and delete if necessary
+#### Entry operations:
+- **stat** - uses `entry_info`
+- **is_dir** - uses `entry_info`
+- **is_file** - uses `entry_info`
+- **rename** - uses `entry_rename`
+- **move** - uses `entry_rename` or a recursive copy and delete if necessary
 
 Note 6: `move` actually does not exist as a method of `pathlib.Path`, so it should mimic [shutil.move](https://docs.python.org/3/library/shutil.html#shutil.move) instead.
 
-#### Folder:
+#### Folder operations:
 - **mkdir** - uses `folder_create`
 - **rmdir** - uses `folder_delete`
 
-#### File:
+#### File operations:
 - **touch** - uses `file_create` and `fd_close`
 - **unlink** - uses `file_delete`
 - **read_text/bytes** - uses `file_open`, `fd_read` and `fd_close`
