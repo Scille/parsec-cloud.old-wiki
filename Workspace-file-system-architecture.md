@@ -52,8 +52,8 @@ The following transactions target an open file represented by its file descripto
 #### File descriptor transactions:
 * **fd_read**: read data from the given file descriptor and **move its cursor**
 * **fd_write**: write data to the given file descriptor and **move its cursor**
-* **fd_resize**: change the size of a file descriptor, padding with `\x00` if necessary
-* **fd_flush**: currently a no-op operation, since data 
+* **fd_resize**: change the size of the file behind the file descriptor, padding with `\x00` if necessary
+* **fd_flush**: currently a no-op operation, since data is written too the disk during `fd_write` transaction
 * **fd_close**: close the file descriptor
 
 All the file system transactions are expected to raise the standard [python OS errors](https://docs.python.org/3.7/library/exceptions.html#os-exceptions) corresponding to the encountered error.
