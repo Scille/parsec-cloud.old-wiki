@@ -32,3 +32,7 @@ b = QPushButton(_("Cancel"))
 # Yes
 b = QPushButton(_("BUTTON_CANCEL"))
 ```
+
+## Resources
+
+[Microsoft International Terminology](https://www.microsoft.com/en-us/language)
