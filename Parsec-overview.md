@@ -21,8 +21,7 @@ From sources:
 % git clone https://github.com/Scille/parsec-cloud.git
 % cd parsec-cloud
 % pip3 install -e .[all]
-% python3 setup.py generate_pyqt_forms
-% python3 setup.py generate_pyqt_resources_bundle
+% python setup.py generate_pyqt
 ```
 
 Backend
