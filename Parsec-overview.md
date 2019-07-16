@@ -24,6 +24,18 @@ From sources:
 % python setup.py generate_pyqt
 ```
 
+Unit testing
+------------
+
+Using pytest:
+
+```console
+% pytest                  # Quick run
+% pytest --runmountpoint  # Include mountpoint tests
+% pytest --rungui         # Include GUI tests
+% pytest --runslow        # Include slow tests
+```
+
 Backend
 -------
 
