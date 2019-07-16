@@ -36,6 +36,12 @@ Using pytest:
 % pytest --runslow        # Include slow tests
 ```
 
+Install pytest-xvfb to hide the Qt windows when running the GUI tests
+```
+% apt install xvfb
+% pip install pytest-xvfb
+```
+
 Backend
 -------
 
