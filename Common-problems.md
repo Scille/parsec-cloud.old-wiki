@@ -11,8 +11,9 @@ Nothing Parsec can do about that.
 This problem usually occurs for users that tried the beta versions of Parsec with a test database that could be reset at any time, leaving some old devices still registered on their computer. We don't want Parsec to have a "clean all" functionality, as this could prove very dangerous and erase devices that were not meant to be erased.
 
 A user can still erase these devices manually though:
-**On Windows**, in the explorer's address bar, go to "%APPDATA%/parsec" (or C:\Users\<YourUser>\AppData\Roaming, AppData is a hidden folder).
-**On Linux**, in your home directory (~), go to .config/parsec.
+
+**On Windows**, in the explorer's address bar, go to "**%APPDATA%/parsec**" (or C:\Users\<YourUser>\AppData\Roaming, AppData is a hidden folder).
+**On Linux**, go to "**~/.config/parsec**".
 
 - Remove unwanted devices in config/devices
 - Remove unwanted devices in data
