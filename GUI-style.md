@@ -15,6 +15,7 @@
 
 * ![#222222](https://placehold.it/15/222222/000000?text=+) `#222222` `rgb(34, 34, 34)` Titles
 * ![#333333](https://placehold.it/15/333333/000000?text=+) `#333333` `rgb(51, 51, 51)` Usual texts
+* ![#FFFFFF](https://placehold.it/15/FFFFFF/000000?text=+) `#FFFFFF` `rgb(255, 255, 255)` Button enabled text
 * ![#0092FF](https://placehold.it/15/0092ff/000000?text=+) `#0092FF` `rgb(0, 146, 255)` Important icons
 * ![#F44336](https://placehold.it/15/F44336/000000?text=+) `#F44336` `rgb(244, 67, 54)` Error text, password strength bad
 * ![#f1962b](https://placehold.it/15/f1962b/000000?text=+) `#f1962b` `rgb(251, 150, 43)` File unsynced icon, password strength weak
