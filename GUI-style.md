@@ -1,3 +1,5 @@
+# Colors
+
 ## Background
 
 * ![#222222](https://placehold.it/15/222222/000000?text=+) `#222222` `rgb(34, 34, 34)` Main left menu background
@@ -6,6 +8,7 @@
 * ![#F4F4F4](https://placehold.it/15/F4F4F4/000000?text=+) `#F4F4F4` `rgba(244, 244, 244)` Dialog background color, workspace button focus background
 * ![#FFFFFF](https://placehold.it/15/FFFFFF/000000?text=+) `#FFFFFF` `rgb(255, 255, 255)` Input elements background, tab bar background, focus element background
 * ![#0092FF](https://placehold.it/15/0092ff/000000?text=+) `#0092FF` `rgb(0, 146, 255)` Enabled buttons background
+* ![#DDDDDD](https://placehold.it/15/DDDDDD/000000?text=+) `#DDDDDD` `rgb(221, 221, 221)` Disabled elements background
 
 ## Inputs
 
