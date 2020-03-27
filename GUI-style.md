@@ -13,6 +13,9 @@
 ## Inputs
 
 * ![#999999](https://placehold.it/15/999999/000000?text=+) `#999999` `rgb(153, 153, 153)` Input elements borders
+* ![#0092FF](https://placehold.it/15/0092ff/000000?text=+) `#0092FF` `rgb(0, 146, 255)` Inline button
+* ![#0070DD](https://placehold.it/15/0070DD/000000?text=+) `#0070DD` `rgb(0, 112, 221)` Inline button hover
+* ![#00B4FF](https://placehold.it/15/00B4FF/000000?text=+) `#00B4FF` `rgb(0, 180, 255)` Hover button background
 
 ## Texts/icons
 
