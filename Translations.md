@@ -30,7 +30,14 @@ We use translations code instead of the whole English string in the source code 
 # No
 b = QPushButton(_("Cancel"))
 # Yes
-b = QPushButton(_("BUTTON_CANCEL"))
+b = QPushButton(_("ACTION_CANCEL"))
+```
+
+Usually, codes are broken down into two categories: ACTION and TEXT. An action is something the user can click on, a text is a description. We also try to include some context on where the code is used, to make it easier to translate it later on:
+```python
+b.setText(_("ACTION_BOOTSTRAP_ORGANIZATION_VALIDATE"))
+# or 
+line_edit.setPlaceHolder(_("TEXT_BOOTSTRAP_ORGANIZATION_URL_PLACEHOLDER"))
 ```
 
 ## Resources
