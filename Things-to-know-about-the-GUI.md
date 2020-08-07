@@ -8,6 +8,9 @@
 
 * `python setup.py extract_translations` to extract the translation strings from the sources and the forms
 * `python setup.py generate_pyqt` to convert the forms to .py files, compile the translations, and create the resources binary
+* `source tests/scripts/run_testenv.sh` allows you to start a testing backend with a few devices already created. You can also export the environment variables given by the script to another terminal.
+
+⚠️ Everytime you update your branch from the repository, it is best to execute `python setup.py generate_pyqt` to be sure that translations and forms are correctly compiled.
 
 # Files
 
