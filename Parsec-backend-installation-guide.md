@@ -1,5 +1,3 @@
-Parsec backend installation guide
-=================================
 
 This guide covers the parsec backend installation procedure for **Ubuntu 18.04 LTS (Bionic)**.
 
