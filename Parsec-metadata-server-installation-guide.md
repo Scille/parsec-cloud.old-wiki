@@ -7,7 +7,7 @@ Database requirements
 
 The parsec metadata server requires the access to a [PostgreSQL](https://www.postgresql.org/), accessible through a `postgresql://` URL. This database is used to store all the metadata for the different parsec organizations. Note that the postgresql database doesn't have to run on the same machine as the metadata server.
 
-In the case of a test environment, the following setup commands are provided for convenience. First install PostgreSQL (version 10 or above):
+In the case of a test environment, it is possible to run a postgresql database in a docker container. The following setup commands are provided for convenience:
 ```shell
 # Run a detached postgres container called `parsec-postgres`
 $ docker run -d \
