@@ -311,7 +311,7 @@ Migrate ✔
 
 The metadata server can now be started
 ```shell
-& parsec backend run
+$ parsec backend run
 Starting Parsec Backend on 127.0.0.1:6777 (db=POSTGRESQL blockstore=S3 backend_addr=parsec://localhost:6677 email_config=MockedEmailConfig(sender=no-reply@parsec.com, tmpdir=/tmp/tmp-email-folder-w_anjztu))
 
 ```
