@@ -58,7 +58,7 @@ In the case of a test environment, a s3 storage can be setup through the [locals
 $ mkdir -p s3-testing
 $ export S3_TESTING_DIR=$PWD/s3-testing
 
-# Generate autosigned certificate (keys and cert)
+# Generate self-signed certificate (keys and cert)
 $ openssl req -batch \
   -x509 -sha256 -nodes -days 365 -newkey rsa:4096 \
   -addext "subjectAltName = DNS:localhost" \
