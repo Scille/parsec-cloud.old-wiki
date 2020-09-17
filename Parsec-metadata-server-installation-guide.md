@@ -40,7 +40,7 @@ Now export the postgresql URL as `PARSEC_DB` and make sure the parsec database i
 $ export PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
 
 # Make sure the parsec database is accessible
-$ sudo apt postgresql-client
+$ sudo apt install postgresql-client
 $ psql $PARSEC_DB -c "\conninfo"
 You are connected to database "parsec" as user "parsec" 
 on host "localhost" (address "127.0.0.1") at port "5435"
