@@ -69,9 +69,8 @@ CONTAINER ID        IMAGE                   COMMAND                  CREATED    
 # For your information, you can get containers logs using 
 $ docker logs s3
 
-
 # Install aws client
-$ snap install aws-cli --classic
+$ sudo apt install awscli
 
 # Create aws s3 bucket
 $ aws --endpoint-url https://localhost:4566 s3 mb s3://parsec
