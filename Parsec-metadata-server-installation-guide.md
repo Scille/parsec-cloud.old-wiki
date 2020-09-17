@@ -74,7 +74,7 @@ $ docker run -d --rm \
   -v $S3_TESTING_DIR:/tmp/localstack \
   localstack/localstack
 
-# The docker container should now be up and running
+# Check docker container is running
 $ docker container ls -l
 CONTAINER ID   IMAGE                   COMMAND                  CREATED              STATUS              PORTS   NAMES
 7f4d8467dde9   localstack/localstack   "docker-entrypoint.sh"   About a minute ago   Up About a minute   [...]   parsec-s3
@@ -178,16 +178,27 @@ $ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
 Server configuration
 --------------------
 
-The backend can be configured through environment variables.
-
-First configure a host and a port for the parsec server:
-
-```shell
+T```shell
 # Configure the parsec server bind address (default is 127.0.0.1)
 $ export PARSEC_HOST=127.0.0.1
 
 # Configure the parsec server port (default is 6777)
 $ export PARSEC_PORT=6777
+```
+
+# Configure the parsec blockstore. 
+$ export PARSEC_BLOCKSTORE=s3:localhost\:4566:region1:parsec:user:password
+
+
+PARSEC_BACKEND_ADDR=parsec://localhost:6677
+
+# Export SSL certificate
+PARSEC_SSL_KEYFILE=parsec.test.key
+PARSEC_SSL_CERTFILE=parsec.test.cert
+
+# 
+PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
+PARSEC_ADMINISTRATION_TOKEN=
 ```
 
 // TODO
