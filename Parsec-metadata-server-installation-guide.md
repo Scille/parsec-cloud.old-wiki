@@ -42,7 +42,8 @@ $ export PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
 # Make sure the parsec database is accessible
 $ sudo apt postgresql-client
 $ psql $PARSEC_DB -c "\conninfo"
-You are connected to database "parsec" as user "parsec" on host "localhost" (address "127.0.0.1") at port "5435"
+You are connected to database "parsec" as user "parsec" 
+on host "localhost" (address "127.0.0.1") at port "5435"
 ```
 
 Remember that those commands are provided for convenience in the case of a test environment. For more information about how to securely set up a postresql databse, please refer to [the official documentation](https://www.postgresql.org/docs/).
@@ -66,7 +67,10 @@ $ openssl req -batch \
   -out $S3_TESTING_DIR/server.test.pem.crt
 
 # Generate a pem file for the S3 server
-$ cat $S3_TESTING_DIR/server.test.pem.key $S3_TESTING_DIR/server.test.pem.crt > $S3_TESTING_DIR/server.test.pem
+$ cat \
+  $S3_TESTING_DIR/server.test.pem.key \
+  $S3_TESTING_DIR/server.test.pem.crt \
+  > $S3_TESTING_DIR/server.test.pem
 
 # Export the certificate path for S3 client
 $ export AWS_CA_BUNDLE=$S3_TESTING_DIR/server.test.pem.crt
