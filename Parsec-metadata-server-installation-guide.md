@@ -89,8 +89,8 @@ $ docker run -d --rm \
 
 # Check docker container is running
 $ docker container ls -l
-CONTAINER ID   IMAGE                   COMMAND                  CREATED              STATUS              PORTS   NAMES
-7f4d8467dde9   localstack/localstack   "docker-entrypoint.sh"   About a minute ago   Up About a minute   [...]   parsec-s3
+CONTAINER ID   IMAGE                   CREATED              STATUS              PORTS   NAMES
+7f4d8467dde9   localstack/localstack   About a minute ago   Up About a minute   [...]   parsec-s3
 
 # For more information, show the container logs
 $ docker logs s3
