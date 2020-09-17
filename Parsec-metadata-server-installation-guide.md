@@ -23,6 +23,7 @@ $ docker run -d \
 $ docker container ls -l
 CONTAINER ID   IMAGE      COMMAND                  CREATED        STATUS        PORTS                   NAMES
 03aba882daf8   postgres   "docker-entrypoint.s…"   2 minutes ago  Up 2 minutes  0.0.0.0:5435->5432/tcp  parsec-postgres
+$ docker logs parsec-postgres
 
 # It is configured with a user called `parsec`, the password being `DBPASS`.
 # A fresh database called `parsec` has been created for the `parsec` user.
