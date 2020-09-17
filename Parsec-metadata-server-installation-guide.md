@@ -1,6 +1,31 @@
 
 This guide covers the installation procedure for the parsec metadata server (usually referred to as "backend")  for **Ubuntu 18.04 LTS (Bionic)**.
 
+Preamble
+--------
+
+The parsec metadata server depends on external components in order to work properly. This includes:
+- a PostgreSQL database to store the metadata
+- an S3 object storage to store the data blocks
+- an SMTP server for sending emails
+- an SSL certificate for HTTPS communication with the clients
+
+From a security standpoint, the installation of those components is outside the scope of this guide. In order to securely manage those services, please refer to their official documentation.
+
+As configuring those components properly can be tedious, this guide provides instructions for quickly setting up mockups or basic install for the required services. Keep in mind that those instructions are provided for convenience and should not be used in production.
+
+Those mockups are meant to run in docker containers. In order to install docker, please use the following commands
+
+```shell
+# Update the list of available packages
+$ sudo apt update
+
+# Install the snap service
+$ sudo apt install snapd
+
+# Install docker through snap
+$ sudo snap install docker
+```
 
 Database requirements
 ---------------------
