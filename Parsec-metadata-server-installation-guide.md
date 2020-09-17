@@ -10,7 +10,7 @@ The parsec metadata server requires the access to a [PostgreSQL](https://www.pos
 In the case of a test environment, it might be simpler to run a postgresql database in a docker container. The following setup commands are provided for convenience:
 ```shell
 # Run a detached postgres container called `parsec-postgres`
-$ docker run -d --rm \
+$ docker run -d \
   --name parsec-postgres \
   -e POSTGRES_USER=parsec \
   -e POSTGRES_PASSWORD=DBPASS \
@@ -23,11 +23,6 @@ $ docker run -d --rm \
 $ docker container ls -l
 CONTAINER ID   IMAGE      COMMAND                  CREATED        STATUS        PORTS                   NAMES
 03aba882daf8   postgres   "docker-entrypoint.s…"   2 minutes ago  Up 2 minutes  0.0.0.0:5435->5432/tcp  parsec-postgres
-$ docker logs parsec-postgres
-[...]
-2020-09-17 09:27:57.223 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-2020-09-17 09:27:57.254 UTC [1] LOG:  database system is ready to accept connections
-
 
 # It is configured with a user called `parsec`, the password being `DBPASS`.
 # A fresh database called `parsec` has been created for the `parsec` user.
@@ -39,19 +34,38 @@ $ docker logs parsec-postgres
 $ export PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
 
 # Make sure the parsec database is accessible
-$ sudo apt install postgresql-client
+$ sudo apt postgresql-client
 $ psql $PARSEC_DB -c "\conninfo"
 You are connected to database "parsec" as user "parsec" on host "localhost" (address "127.0.0.1") at port "5435"
 ```
 
-For more information about how to securely set up a postresql database, please refer to [the official documentation](https://www.postgresql.org/docs/).
+For more information about how to securely set up a postresql databse, please refer to [the official documentation](https://www.postgresql.org/docs/).
 
 
 Object storage requirements
 ---------------------------
+The parsec metadata server requires to access a cloud storage service to store the data. This storage can be a aws s3 storage, accessible through a s3 url.
 
-// TODO
+In the case of a test environment, a s3 storage can be setup through the [localstack](https://github.com/localstack/localstack) docker container using the following commands:
+```shell
+# Generate autosigned certificate (keys and cert)
+$ mkdir ssl-cert
+$ cd ssl-cert
+$ openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout s3-service.pem.key -out s3-service.pem.crt
+# Define cert directory for S3 server
+$ export S3_SERVER_CERT_DIR=$PWD
+# Define cert path for S3 client
+$ export AWS_CA_BUNDLE=$PWD/[...].crt
 
+# Start docker service
+$ docker run -p 4566:4566 -e "SERVICES=s3" --name s3 -v $S3_SERVER_CERT_DIR:/tmp/localstack localstack/localstack
+
+# Install aws client
+apt install awsclient
+
+# Create aws s3 bucket
+aws --endpoint-url https://localhost:4566 s3 mb s3://parsec
+```
 
 Package requirements
 --------------------
