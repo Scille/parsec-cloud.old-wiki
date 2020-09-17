@@ -146,8 +146,8 @@ $ which python
 /home/user/venv/bin/python
 ```
 
-Parsec metadata server installation
------------------------------------
+Parsec backend installation
+---------------------------
 
 The parsec backend is now ready to be installed through `pip`:
 
@@ -160,27 +160,7 @@ $ parsec backend --help
 Usage: parsec backend [OPTIONS] COMMAND [ARGS]...
 [...]
 ```
-The communication between the parsec client and the parsec metadata server should be secured using SSL certificates. This can be done by either:
-- running the server behind a reverse proxy like [NGINX](http://nginx.org/en/docs), [configured as an HTTPS server](http://nginx.org/en/docs/http/configuring_https_servers.html)
-- passing a pair of SSL certificate and key explicitly to the parsec server using the `PARSEC_SSL_KEYFILE` and `PARSEC_SSL_CERTFILE` environment variables
 
-For a test environment, self-signed SSL certificate can be generated using the following commands:
-```shell
-# Generate an autosigned SSL certificate
-$ mkdir -p ssl-testing
-$ openssl req -batch \
-  -x509 -sha256 -nodes -days 365 -newkey rsa:4096 \
-  -keyout $PWD/ssl-testing/parsec.test.key \
-  -out $PWD/ssl-testing/parsec.test.cert \
-  -addext "subjectAltName = DNS:localhost"
-
-# Export SSL certificate and key filenames for the parsec server
-$ export PARSEC_SSL_KEYFILE=$PWD/ssl-testing/parsec.test.key
-$ export PARSEC_SSL_CERTFILE=$PWD/ssl-testing/parsec.test.cert
-
-# Export SSL certificate filename for the parsec client
-$ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
-```
 
 Server configuration
 --------------------
@@ -199,7 +179,7 @@ $ export PARSEC_PORT=6777
 Configure the parsec with required services url:
 ```shell
 # Setup the postgresql data url
-PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
+export PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
 
 # Configure the parsec blockstore. 
 $ export PARSEC_BLOCKSTORE=s3:localhost\:4566:region1:parsec:user:password
@@ -213,3 +193,55 @@ export PARSEC_BACKEND_ADDR=parsec://localhost:6677
 # secret administation token used to create organization
 export PARSEC_ADMINISTRATION_TOKEN=s3cr3t
 ```
+
+SSL configuration
+--------------------
+
+Parsec can be configured to use SSL certificates. 
+
+For a test environment, autosigned SSL certificate can be generated using the following commands:
+```shell
+
+# Generate an autosigned SSL certificate
+$ mkdir -p ssl-testing
+$ openssl req -batch \
+  -x509 -sha256 -nodes -days 365 -newkey rsa:4096 \
+  -keyout $PWD/ssl-testing/parsec.test.key \
+  -out $PWD/ssl-testing/parsec.test.cert \
+  -addext "subjectAltName = DNS:localhost"
+
+# Export SSL certificate and key filenames for the parsec server
+$ export PARSEC_SSL_KEYFILE=$PWD/ssl-testing/parsec.test.key
+$ export PARSEC_SSL_CERTFILE=$PWD/ssl-testing/parsec.test.cert
+
+# Export SSL certificate filename for the parsec client
+$ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
+```
+
+
+Start the parsec server
+--------------------
+
+Check settings
+```shell
+# Check your parsec configuration
+env | grep PARSEC
+PARSEC_HOST=localhost
+PARSEC_PORT=6677
+PARSEC_BLOCKSTORE=s3:localhost\:4566:region1:parsec:user:password
+PARSEC_BACKEND_ADDR=parsec://localhost:6677
+PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
+PARSEC_ADMINISTRATION_TOKEN=s3cr3t
+PARSEC_SSL_KEYFILE=/home/user/ssl-testing/parsec.test.key  # Optional
+PARSEC_SSL_CERTFILE=/home/user/ssl-testing/parsec.test.cert  # Optional
+
+# Be sure to activate the virtual env
+source ./venv/bin/activate
+```
+
+If the postgresql database is new (or if it's the first time parsec runs), database tables need be created:
+```python
+# Create parsec database tables
+parsec 
+```
+
