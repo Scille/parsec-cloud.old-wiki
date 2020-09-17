@@ -146,6 +146,34 @@ $ export PARSEC_BLOCKSTORE=s3:localhost\\:4566:region1:parsec:dummy-user:dummy-p
 Again, remember that those commands are provided for convenience in the case of a test environment. For more information about how to securely set up an S3 bucket, please refer to [the official documentation](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html).
 
 
+SSL configuration
+-----------------
+
+The communication between the parsec client and the parsec metadata server should be secured using SSL certificates. This can be done by either:
+- Running the server behind a reverse proxy like [NGINX](http://nginx.org/en/docs), [configured as an HTTPS server](http://nginx.org/en/docs/http/configuring_https_servers.html)
+- Passing a pair of SSL certificate and key explicitly to the parsec server using the `PARSEC_SSL_KEYFILE` and `PARSEC_SSL_CERTFILE` environment variables
+
+For a test environment, self-signed SSL certificate can be generated using the following commands:
+```shell
+
+# Generate an self-signed SSL certificate
+$ mkdir -p ssl-testing
+$ openssl req -batch \
+  -x509 -sha256 -nodes -days 365 -newkey rsa:4096 \
+  -keyout $PWD/ssl-testing/parsec.test.key \
+  -out $PWD/ssl-testing/parsec.test.cert \
+  -addext "subjectAltName = DNS:localhost"
+
+# Export SSL certificate and key filenames for the parsec server
+$ export PARSEC_SSL_KEYFILE=$PWD/ssl-testing/parsec.test.key
+$ export PARSEC_SSL_CERTFILE=$PWD/ssl-testing/parsec.test.cert
+
+# Export SSL certificate filename for the parsec client
+$ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
+```
+
+Remember that self-signed certificate should only be used in the context of a test environment. For more information about how to securely set up SSL certificates, please refer to the official resources of SSL certificate service providers like [Let's Encrypt](https://letsencrypt.org/).
+
 Parsec metadata server installation
 -----------------------------------
 
@@ -220,34 +248,6 @@ export PARSEC_BACKEND_ADDR=parsec://localhost:6677
 # secret administation token used to create organization
 export PARSEC_ADMINISTRATION_TOKEN=s3cr3t
 ```
-
-SSL configuration
------------------
-
-The communication between the parsec client and the parsec metadata server should be secured using SSL certificates. This can be done by either:
-- Running the server behind a reverse proxy like [NGINX](http://nginx.org/en/docs), [configured as an HTTPS server](http://nginx.org/en/docs/http/configuring_https_servers.html)
-- Passing a pair of SSL certificate and key explicitly to the parsec server using the `PARSEC_SSL_KEYFILE` and `PARSEC_SSL_CERTFILE` environment variables
-
-For a test environment, self-signed SSL certificate can be generated using the following commands:
-```shell
-
-# Generate an self-signed SSL certificate
-$ mkdir -p ssl-testing
-$ openssl req -batch \
-  -x509 -sha256 -nodes -days 365 -newkey rsa:4096 \
-  -keyout $PWD/ssl-testing/parsec.test.key \
-  -out $PWD/ssl-testing/parsec.test.cert \
-  -addext "subjectAltName = DNS:localhost"
-
-# Export SSL certificate and key filenames for the parsec server
-$ export PARSEC_SSL_KEYFILE=$PWD/ssl-testing/parsec.test.key
-$ export PARSEC_SSL_CERTFILE=$PWD/ssl-testing/parsec.test.cert
-
-# Export SSL certificate filename for the parsec client
-$ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
-```
-
-Remember that self-signed certificate should only be used in the context of a test environment. For more information about how to securely set up SSL certificates, please refer to the official resources of SSL certificate service providers like [Let's Encrypt](https://letsencrypt.org/).
 
 
 Start the parsec server
