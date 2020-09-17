@@ -111,7 +111,7 @@ make_bucket: parsec
 Parsec metadata server installation
 -----------------------------------
 
-Two packages need to be installed through the package management system:
+Two required packages first need to be installed through the package management system:
  - **python3.6**
  - **python3-venv**
 
@@ -129,7 +129,7 @@ $ python3.6 -V
 Python 3.6.9
 ```
 
-A dedicated python virtual env needs to be set up, using the following commands:
+A dedicated python virtual env then needs to be set up, using the following commands:
 
 ```shell
 # Create a virtual env at ./venv
@@ -143,7 +143,7 @@ $ which python
 /home/user/venv/bin/python
 ```
 
-The parsec backend is now ready to be installed through `pip`:
+The parsec metadata server is now ready to be installed through `pip`:
 
 ```shell
 # Install the parsec backend specifically
@@ -154,7 +154,6 @@ $ parsec backend --help
 Usage: parsec backend [OPTIONS] COMMAND [ARGS]...
 [...]
 ```
-
 
 Server configuration
 --------------------
