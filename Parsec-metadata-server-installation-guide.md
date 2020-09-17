@@ -76,7 +76,7 @@ $ cat \
 $ export AWS_CA_BUNDLE=$S3_TESTING_DIR/server.test.pem.crt
 ```
 
-Now run the S3 service using the localstack container:
+Now run the S3 service using the [localstack](https://github.com/localstack/localstack) container:
 ```shell
 # Run a detached localstack container called `parsec-s3`
 $ docker run -d --rm \
