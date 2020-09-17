@@ -44,7 +44,7 @@ For more information about how to securely set up a postresql databse, please re
 
 Object storage requirements
 ---------------------------
-The parsec metadata server requires to access a cloud storage service to store the data. This storage can be a aws s3 storage, accessible through a s3 url.
+The parsec metadata server requires to access a cloud storage service to store the data. This storage can be an `aws s3` storage, accessible through a s3 url.
 
 In the case of a test environment, a s3 storage can be setup through the [localstack](https://github.com/localstack/localstack) docker container using the following commands:
 ```shell
