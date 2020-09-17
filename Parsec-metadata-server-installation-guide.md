@@ -195,9 +195,11 @@ export PARSEC_ADMINISTRATION_TOKEN=s3cr3t
 ```
 
 SSL configuration
---------------------
+-----------------
 
-Parsec can be configured to use SSL certificates. 
+The communication between the parsec client and the parsec metadata server should be secured using SSL certificates. This can be done by either:
+- running the server behind a reverse proxy like [NGINX](http://nginx.org/en/docs), [configured as an HTTPS server](http://nginx.org/en/docs/http/configuring_https_servers.html)
+- passing a pair of SSL certificate and key explicitly to the parsec server using the `PARSEC_SSL_KEYFILE` and `PARSEC_SSL_CERTFILE` environment variables
 
 For a test environment, autosigned SSL certificate can be generated using the following commands:
 ```shell
