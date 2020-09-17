@@ -178,7 +178,7 @@ $ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
 Server configuration
 --------------------
 
-T```shell
+```shell
 # Configure the parsec server bind address (default is 127.0.0.1)
 $ export PARSEC_HOST=127.0.0.1
 
