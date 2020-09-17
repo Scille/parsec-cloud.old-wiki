@@ -184,7 +184,6 @@ $ export PARSEC_HOST=127.0.0.1
 
 # Configure the parsec server port (default is 6777)
 $ export PARSEC_PORT=6777
-```
 
 # Configure the parsec blockstore. 
 $ export PARSEC_BLOCKSTORE=s3:localhost\:4566:region1:parsec:user:password
