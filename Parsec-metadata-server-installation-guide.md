@@ -138,7 +138,7 @@ $ python3.6 -V
 Python 3.6.9
 ```
 
-A dedicated python virtual env then needs to be set up, using the following commands:
+A dedicated python [virtual env](https://docs.python.org/3/library/venv.html) then needs to be set up, using the following commands:
 
 ```shell
 # Create a virtual env at ./venv
