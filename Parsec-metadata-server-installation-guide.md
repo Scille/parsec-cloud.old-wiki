@@ -130,6 +130,26 @@ $ parsec backend --help
 Usage: parsec backend [OPTIONS] COMMAND [ARGS]...
 [...]
 ```
+Parsec requires SSL certificate. 
+
+For a test environment, autosigned SSL certificate can be generated using the following commands:
+```shell
+
+# Generate an autosigned SSL certificate
+$ mkdir -p ssl-testing
+$ openssl req -batch \
+  -x509 -sha256 -nodes -days 365 -newkey rsa:4096 \
+  -keyout $PWD/ssl-testing/parsec.test.key \
+  -out $PWD/ssl-testing/parsec.test.cert \
+  -addext "subjectAltName = DNS:localhost"
+
+# Export SSL certificate and key filenames for the parsec server
+$ export PARSEC_SSL_KEYFILE=$PWD/ssl-testing/parsec.test.key
+$ export PARSEC_SSL_CERTFILE=$PWD/ssl-testing/parsec.test.cert
+
+# Export SSL certificate filename for the parsec client
+$ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
+```
 
 Server configuration
 --------------------
