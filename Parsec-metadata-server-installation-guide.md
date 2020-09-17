@@ -74,7 +74,7 @@ $ docker run -d --rm \
   -v $S3_TESTING_DIR:/tmp/localstack \
   localstack/localstack
 
-# Check docker container is running
+# The docker container should now be up and running
 $ docker container ls -l
 CONTAINER ID   IMAGE                   COMMAND                  CREATED              STATUS              PORTS   NAMES
 7f4d8467dde9   localstack/localstack   "docker-entrypoint.sh"   About a minute ago   Up About a minute   [...]   parsec-s3
