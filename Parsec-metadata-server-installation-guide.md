@@ -108,8 +108,8 @@ $ aws --endpoint-url https://localhost:4566 s3 mb s3://parsec
 make_bucket: parsec
 ```
 
-Package requirements
---------------------
+Parsec metadata server installation
+-----------------------------------
 
 Two packages need to be installed through the package management system:
  - **python3.6**
@@ -129,9 +129,6 @@ $ python3.6 -V
 Python 3.6.9
 ```
 
-Setting up a python venv
-------------------------
-
 A dedicated python virtual env needs to be set up, using the following commands:
 
 ```shell
@@ -145,9 +142,6 @@ $ source ./venv/bin/activate
 $ which python
 /home/user/venv/bin/python
 ```
-
-Parsec backend installation
----------------------------
 
 The parsec backend is now ready to be installed through `pip`:
 
