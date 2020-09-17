@@ -93,7 +93,7 @@ CONTAINER ID   IMAGE                   CREATED              STATUS              
 7f4d8467dde9   localstack/localstack   About a minute ago   Up About a minute   [...]   parsec-s3
 
 # For more information, show the container logs
-$ docker logs s3
+$ docker logs parsec-s3
 [...]
 Running on 0.0.0.0:4566 over https (CTRL + C to quit)
 Running on 0.0.0.0:38105 over http (CTRL + C to quit)
