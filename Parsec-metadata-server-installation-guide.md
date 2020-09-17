@@ -1,6 +1,9 @@
 
 This guide covers the installation procedure for the parsec metadata server (usually referred to as "backend")  for **Ubuntu 18.04 LTS (Bionic)**.
 
+# Table of Contents
+1. [Preamble](#Preamble)
+
 Preamble
 --------
 
