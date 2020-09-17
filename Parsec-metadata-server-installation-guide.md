@@ -39,7 +39,7 @@ $ psql $PARSEC_DB -c "\conninfo"
 You are connected to database "parsec" as user "parsec" on host "localhost" (address "127.0.0.1") at port "5435"
 ```
 
-For more information about how to securely set up a postresql databse, please refer to [the official documentation](https://www.postgresql.org/docs/).
+For more information about how to securely set up a postresql database, please refer to [the official documentation](https://www.postgresql.org/docs/).
 
 
 Object storage requirements
