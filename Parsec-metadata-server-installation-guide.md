@@ -130,7 +130,7 @@ $ parsec backend --help
 Usage: parsec backend [OPTIONS] COMMAND [ARGS]...
 [...]
 ```
-Parsec requires SSL certificate. 
+Parsec requires SSL certificates. 
 
 For a test environment, autosigned SSL certificate can be generated using the following commands:
 ```shell
