@@ -124,9 +124,9 @@ Again, remember that those commands are provided for convenience in the case of 
 Parsec metadata server installation
 -----------------------------------
 
-Two required packages first need to be installed through the package management system:
- - **python3.6**
- - **python3-venv**
+Two ubuntu packages first need to be installed through the package management system:
+ - *python3.6*
+ - *python3-venv*
 
  See below the corresponding commands:
 
