@@ -271,8 +271,16 @@ source ./venv/bin/activate
 ```
 
 If the postgresql database is new (or if it's the first time parsec runs), database tables need be created:
-```python
+
+
+```shell
 # Create parsec database tables
-parsec 
+$ parsec backend migrate
+Migrate ✔
+0001_initial.sql ✔
+0002_add_migration_table.sql ✔
+0003_human_handle.sql ✔
+0004_invite.sql ✔
+0005_redacted_certificates.sql ✔
 ```
 
