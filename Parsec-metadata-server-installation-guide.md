@@ -51,7 +51,11 @@ In the case of a test environment, a s3 storage can be setup through the [locals
 # Aws requires SSL certifactes
 # Generate autosigned certificate (keys and cert)
 $ mkdir s3-ssl-cert -p
-$ openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout s3-ssl-cert/server.test.pem.key -out s3-ssl-cert/server.test.pem.crt
+$ openssl req -batch \
+    -x509 -sha256 -nodes -days 365 -newkey rsa:4096 \
+    -keyout s3-ssl-cert/server.test.pem.key \
+    -out s3-ssl-cert/server.test.pem.crt \
+    -addext "subjectAltName = DNS:localhost"
 $ cat s3-ssl-cert/server.test.pem.key s3-ssl-cert/server.test.pem.crt > s3-ssl-cert/server.test.pem
 
 # Setup environment variable 
