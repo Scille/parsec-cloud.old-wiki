@@ -195,28 +195,20 @@ $ export PARSEC_HOST=127.0.0.1
 # Configure the parsec server port (default is 6777)
 $ export PARSEC_PORT=6777
 ```
-Define the postgesql database url to use.
+Configure the parsec with required services url:
 ```shell
 # Setup the postgresql data url
 PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
-```
 
-Setup parsec Amazon S3 storage url.
-Note that parsec can also be configured to run with:
- - OpenStack SWIFT url
- - POSTGRESQL
-
-```shell
 # Configure the parsec blockstore. 
 $ export PARSEC_BLOCKSTORE=s3:localhost\:4566:region1:parsec:user:password
 ```
 
-Setup URL to reach the the parsec metadata server (used in invitation emails).
+Setup parsec internals 
 ```shell
+# URL to reach the the parsec metadata server (used in invitation emails).
 export PARSEC_BACKEND_ADDR=parsec://localhost:6677
-```
 
-Configure secret administation token used to create organization
-```shell
+# secret administation token used to create organization
 export PARSEC_ADMINISTRATION_TOKEN=s3cr3t
 ```
