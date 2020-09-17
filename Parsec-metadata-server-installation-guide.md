@@ -73,7 +73,6 @@ $ docker run -d --rm \
   -p 4566:4566 \
   -v $S3_TESTING_DIR:/tmp/localstack \
   localstack/localstack
-```
 
 # Check docker container is running
 $ docker container ls -l
