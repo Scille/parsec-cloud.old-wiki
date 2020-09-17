@@ -146,8 +146,8 @@ $ which python
 /home/user/venv/bin/python
 ```
 
-Parsec backend installation
----------------------------
+Parsec metadata server installation
+-----------------------------------
 
 The parsec backend is now ready to be installed through `pip`:
 
@@ -160,11 +160,12 @@ $ parsec backend --help
 Usage: parsec backend [OPTIONS] COMMAND [ARGS]...
 [...]
 ```
-Parsec requires SSL certificates. 
+The communication between the parsec client and the parsec metadata server should be secured using SSL certificates. This can be done by either:
+- running the server behind a reverse proxy like [NGINX](http://nginx.org/en/docs), [configured as an HTTPS server](http://nginx.org/en/docs/http/configuring_https_servers.html)
+- passing a pair of SSL certificate and key explicitly to the parsec server using the `PARSEC_SSL_KEYFILE` and `PARSEC_SSL_CERTFILE` environment variables
 
-For a test environment, autosigned SSL certificate can be generated using the following commands:
+For a test environment, self-signed SSL certificate can be generated using the following commands:
 ```shell
-
 # Generate an autosigned SSL certificate
 $ mkdir -p ssl-testing
 $ openssl req -batch \
