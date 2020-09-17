@@ -55,7 +55,7 @@ $ openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout s3-service
 # Define cert directory for S3 server
 $ export S3_SERVER_CERT_DIR=$PWD
 # Define cert path for S3 client
-$ export AWS_CA_BUNDLE=$PWD/[...].crt
+$ export AWS_CA_BUNDLE=$PWD/s3-service.pem.crt
 
 # Start docker service
 $ docker run -p 4566:4566 -e "SERVICES=s3" --name s3 -v $S3_SERVER_CERT_DIR:/tmp/localstack localstack/localstack
