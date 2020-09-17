@@ -252,7 +252,7 @@ $ export PARSEC_SSL_KEYFILE=$PWD/ssl-testing/parsec.test.key
 $ export PARSEC_SSL_CERTFILE=$PWD/ssl-testing/parsec.test.cert
 ```
 
-The way for the client to access the metadata parsec server need to be configured. It is a different option than the Parsec Host. This variable need to consider the network architecture (for example, the reverse proxy address can be setup there). This option defined the way for the client to reach the metadata server. This variable is used to compute parsec link and to generate invitation emails.
+The way for the client to access the metadata parsec server need to be configured. It is a different option than the Parsec Host. This variable need to consider the network architecture (for example, the reverse proxy address can be setup there). This option defined the way for the client to reach the metadata server. This variable is used to compute parsec link and to generate invitation emails. The backend address is setup as a parsec url: `parsec://host:port`
 ```shell
 # URL to reach the the parsec metadata server (used in invitation emails).
 export PARSEC_BACKEND_ADDR=parsec://localhost:6677
@@ -301,5 +301,7 @@ Migrate ✔
 
 
 The metadata server can now be started
-
+```shell
+& parsec backend run
+```
 
