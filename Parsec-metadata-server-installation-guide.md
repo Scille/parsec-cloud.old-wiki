@@ -51,11 +51,12 @@ In the case of a test environment, a s3 storage can be setup through the [locals
 # Generate autosigned certificate (keys and cert)
 $ mkdir ssl-cert
 $ cd ssl-cert
-$ openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout s3-service.pem.key -out s3-service.pem.crt
+$ openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout server.test.pem.key -out server.test.pem.crt
+$ cat server.test.pem.key server.test.pem.crt > server.test.pem
 # Define cert directory for S3 server
 $ export S3_SERVER_CERT_DIR=$PWD
 # Define cert path for S3 client
-$ export AWS_CA_BUNDLE=$PWD/s3-service.pem.crt
+$ export AWS_CA_BUNDLE=$PWD/server.test.pem.crt
 
 # Start docker service
 $ docker run -p 4566:4566 -e "SERVICES=s3" --name s3 -v $S3_SERVER_CERT_DIR:/tmp/localstack -d  localstack/localstack
@@ -70,10 +71,10 @@ $ docker logs s3
 
 
 # Install aws client
-apt install awsclient
+$ snap install aws-cli --classic
 
 # Create aws s3 bucket
-aws --endpoint-url https://localhost:4566 s3 mb s3://parsec
+$ aws --endpoint-url https://localhost:4566 s3 mb s3://parsec
 ```
 
 Package requirements
