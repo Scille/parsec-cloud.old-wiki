@@ -42,17 +42,19 @@ $ export PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
 # Make sure the parsec database is accessible
 $ sudo apt postgresql-client
 $ psql $PARSEC_DB -c "\conninfo"
-You are connected to database "parsec" as user "parsec" on host "localhost" (address "127.0.0.1") at port "5435"
+You are connected to database "parsec" as user "parsec" 
+on host "localhost" (address "127.0.0.1") at port "5435"
 ```
 
-For more information about how to securely set up a postresql databse, please refer to [the official documentation](https://www.postgresql.org/docs/).
+Remember that those commands are provided for convenience in the case of a test environment. For more information about how to securely set up a postresql databse, please refer to [the official documentation](https://www.postgresql.org/docs/).
 
 
 Object storage requirements
 ---------------------------
-The parsec metadata server requires to access a cloud storage service to store the data. This storage can be an `aws s3` storage, accessible through a s3 url.
 
-In the case of a test environment, a s3 storage can be setup through the [localstack](https://github.com/localstack/localstack) docker container using the following commands:
+The parsec metadata server requires to access a cloud storage service to store the data. This storage is typically an [AWS S3 object storage](https://aws.amazon.com/s3/) and is used to store the blocks of encrypted data.
+
+In the case of a test environment, an S3 storage mockup can be setup through the [localstack](https://github.com/localstack/localstack) docker container using the following commands. First generate a self-signed certificate for the SSL connection between the parsec server and the S3 mockup:
 ```shell
 # Create a directory for S3 persistent data and certificates
 $ mkdir -p s3-testing
@@ -66,12 +68,17 @@ $ openssl req -batch \
   -out $S3_TESTING_DIR/server.test.pem.crt
 
 # Generate a pem file for the S3 server
-$ cat $S3_TESTING_DIR/server.test.pem.key $S3_TESTING_DIR/server.test.pem.crt > $S3_TESTING_DIR/server.test.pem
+$ cat \
+  $S3_TESTING_DIR/server.test.pem.key \
+  $S3_TESTING_DIR/server.test.pem.crt \
+  > $S3_TESTING_DIR/server.test.pem
 
 # Export the certificate path for S3 client
 $ export AWS_CA_BUNDLE=$S3_TESTING_DIR/server.test.pem.crt
-
-# Run a detached postgres container called `parsec-s3`
+```
+Now run the S3 service using the [localstack](https://github.com/localstack/localstack) container:
+```shell
+# Run a detached localstack container called `parsec-s3`
 $ docker run -d --rm \
   --name parsec-s3 \
   -e SERVICES=s3 \
@@ -82,18 +89,17 @@ $ docker run -d --rm \
 
 # Check docker container is running
 $ docker container ls -l
-CONTAINER ID   IMAGE                   COMMAND                  CREATED              STATUS              PORTS   NAMES
-7f4d8467dde9   localstack/localstack   "docker-entrypoint.sh"   About a minute ago   Up About a minute   [...]   parsec-s3
+CONTAINER ID   IMAGE                   CREATED              STATUS              PORTS   NAMES
+7f4d8467dde9   localstack/localstack   About a minute ago   Up About a minute   [...]   parsec-s3
 
 # For more information, show the container logs
-$ docker logs s3
+$ docker logs parsec-s3
 [...]
 Running on 0.0.0.0:4566 over https (CTRL + C to quit)
 Running on 0.0.0.0:38105 over http (CTRL + C to quit)
-
-# The S3 object storage should now be exposed as an HTTPS service on port 4566
-# The data is stored persistently at `$S3_TESTING_DIR/data`
-
+```
+The S3 object storage should now be exposed as an HTTPS service on port 4566. The data is stored persistently at `$S3_TESTING_DIR/data`. A dedicated S3 bucket called `s3://parsec` needs to be created, this can be done using the AWS client:
+```shell
 # Install AWS client and setup AWS credential with dummy values
 $ sudo apt update
 $ sudo apt install awscli
@@ -107,6 +113,13 @@ Default output format [None]:
 $ aws --endpoint-url https://localhost:4566 s3 mb s3://parsec
 make_bucket: parsec
 ```
+The parsec S3 bucket is now ready to be accessed using the following URL:
+```shell
+$ export PARSEC_BLOCKSTORE=s3:localhost\\:4566:region1:parsec:dummy-user:dummy-password
+```
+
+Again, remember that those commands are provided for convenience in the case of a test environment. For more information about how to securely set up an S3 bucket, please refer to [the official documentation](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html).
+
 
 Parsec metadata server installation
 -----------------------------------
