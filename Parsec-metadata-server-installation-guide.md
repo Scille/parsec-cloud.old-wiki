@@ -1,8 +1,14 @@
 
 This guide covers the installation procedure for the parsec metadata server (usually referred to as "backend")  for **Ubuntu 18.04 LTS (Bionic)**.
 
-# Table of Contents
 1. [Preamble](#Preamble)
+2. [Database requirements](#Database requirements)
+3. [Object storage requirements](#Object storage requirements)
+4. [SSL configuration](#SSL configuration)
+5. [Parsec metadata server installation](#Parsec metadata server installation)
+6. [Server configuration](#Server configuration)
+7. [Start the parsec server](#Start the parsec server)
+8. [Create an organization](#Create an organization)
 
 Preamble
 --------
