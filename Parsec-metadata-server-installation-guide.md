@@ -24,6 +24,10 @@ $ docker container ls -l
 CONTAINER ID   IMAGE      COMMAND                  CREATED        STATUS        PORTS                   NAMES
 03aba882daf8   postgres   "docker-entrypoint.s…"   2 minutes ago  Up 2 minutes  0.0.0.0:5435->5432/tcp  parsec-postgres
 $ docker logs parsec-postgres
+[...]
+2020-09-17 09:27:57.223 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2020-09-17 09:27:57.254 UTC [1] LOG:  database system is ready to accept connections
+
 
 # It is configured with a user called `parsec`, the password being `DBPASS`.
 # A fresh database called `parsec` has been created for the `parsec` user.
