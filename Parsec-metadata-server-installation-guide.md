@@ -58,7 +58,16 @@ $ export S3_SERVER_CERT_DIR=$PWD
 $ export AWS_CA_BUNDLE=$PWD/s3-service.pem.crt
 
 # Start docker service
-$ docker run -p 4566:4566 -e "SERVICES=s3" --name s3 -v $S3_SERVER_CERT_DIR:/tmp/localstack localstack/localstack
+$ docker run -p 4566:4566 -e "SERVICES=s3" --name s3 -v $S3_SERVER_CERT_DIR:/tmp/localstack -d  localstack/localstack
+
+# Check docker container is running
+$ docker container ls -l
+CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                                             NAMES
+18bc659b7eca        localstack/localstack   "docker-entrypoint.sh"   58 seconds ago      Up 57 seconds       4567-4597/tcp, 0.0.0.0:4566->4566/tcp, 8080/tcp   s3
+
+# For your information, you can get containers logs using 
+$ docker logs s3
+
 
 # Install aws client
 apt install awsclient
