@@ -24,12 +24,18 @@ $ docker container ls -l
 CONTAINER ID   IMAGE      COMMAND                  CREATED        STATUS        PORTS                   NAMES
 03aba882daf8   postgres   "docker-entrypoint.s…"   2 minutes ago  Up 2 minutes  0.0.0.0:5435->5432/tcp  parsec-postgres
 
-# It is configured with a user called `parsec`, the password being `DBPASS`.
-# A fresh database called `parsec` has been created for the `parsec` user.
-# The database is stored persistently at `/var/lib/docker/volumes/parsec-postgres-data`
-# The postgres service is running on port 5432 in the container, but exposed on port 5435
-# on the local machine in order to prevent conflicts with existing services.
+# For more information, show the container logs
+$ docker logs parsec-postgres
+[...]
+2020-09-17 16:05:04.446 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2020-09-17 16:05:04.506 UTC [1] LOG:  database system is ready to accept connection
+```
+A dockerized postgresql service is now running with a user called `parsec`, the password being `DBPASS`. A fresh database called `parsec` has been created for the `parsec` user. The database is stored persistently at `/var/lib/docker/volumes/parsec-postgres-data`.
+The postgres service is running on port 5432 in the container, but exposed on port 5435 on the local machine in order to prevent conflicts with existing services.
 
+Now export the postgresql URL as `PARSEC_DB` and make sure the parsec database is accessible:
+
+```
 # Export the database URL as `PARSEC_DB`
 $ export PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
 
@@ -79,7 +85,7 @@ $ docker container ls -l
 CONTAINER ID   IMAGE                   COMMAND                  CREATED              STATUS              PORTS   NAMES
 7f4d8467dde9   localstack/localstack   "docker-entrypoint.sh"   About a minute ago   Up About a minute   [...]   parsec-s3
 
-# For your information, you can get containers logs using
+# For more information, show the container logs
 $ docker logs s3
 [...]
 Running on 0.0.0.0:4566 over https (CTRL + C to quit)
