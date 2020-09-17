@@ -281,7 +281,7 @@ The parsec installation is now completed. The following commands can help to ass
 Check settings
 ```shell
 # Check your parsec configuration
-env | grep PARSEC
+$ env | grep PARSEC
 PARSEC_HOST=localhost
 PARSEC_PORT=6677
 PARSEC_BLOCKSTORE=s3:localhost\:4566:region1:parsec:user:password
@@ -292,7 +292,7 @@ PARSEC_SSL_KEYFILE=/home/user/ssl-testing/parsec.test.key  # Optional
 PARSEC_SSL_CERTFILE=/home/user/ssl-testing/parsec.test.cert  # Optional
 
 # Be sure to activate the virtual env
-source ./venv/bin/activate
+$ source ./venv/bin/activate
 ```
 
 If the postgresql database is new (or if it's the first time parsec runs), database tables need be created. This can also be run ofter a parsec backend update.
