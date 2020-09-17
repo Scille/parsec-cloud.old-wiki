@@ -65,7 +65,10 @@ $ export S3_SERVER_CERT_DIR=$PWD/s3-ssl-cert/
 $ export AWS_CA_BUNDLE=$PWD/s3-ssl-cert/server.test.pem.crt
 
 # Start docker service
-$ docker run -p 4566:4566 -e "SERVICES=s3" --name s3 -v $S3_SERVER_CERT_DIR:/tmp/localstack -d  localstack/localstack
+$ docker run -p 4566:4566 \
+    -e "SERVICES=s3" --name s3 \
+    -v $S3_SERVER_CERT_DIR:/tmp/localstack \
+    -d  localstack/localstack
 
 # Check docker container is running
 $ docker container ls -l
