@@ -21,8 +21,8 @@ $ docker run -d \
 
 # The container should now be up and running.
 $ docker container ls -l
-CONTAINER ID   IMAGE      COMMAND                  CREATED        STATUS        PORTS                   NAMES
-03aba882daf8   postgres   "docker-entrypoint.s…"   2 minutes ago  Up 2 minutes  0.0.0.0:5435->5432/tcp  parsec-postgres
+CONTAINER ID   IMAGE      CREATED        STATUS        PORTS                   NAMES
+03aba882daf8   postgres   2 minutes ago  Up 2 minutes  0.0.0.0:5435->5432/tcp  parsec-postgres
 
 # For more information, show the container logs
 $ docker logs parsec-postgres
