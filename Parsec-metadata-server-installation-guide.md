@@ -220,9 +220,11 @@ Usage: parsec backend [OPTIONS] COMMAND [ARGS]...
 Server configuration
 --------------------
 
-Parsec can be configured through variable
+Parsec can be configured through environment variables. 
 
-First configure parsec host and port
+The example bellow covers the configuration for a mocked up environment.
+
+First configure parsec host and port. This defined which network interfaces will be used to serve the metadata server.
 
 ```shell
 # Configure the parsec server bind address (default is 127.0.0.1)
@@ -230,28 +232,42 @@ $ export PARSEC_HOST=127.0.0.1
 
 # Configure the parsec server port (default is 6777)
 $ export PARSEC_PORT=6777
+
 ```
-Configure the parsec with required services url:
+
+Parsec metadata server requires to be configured with external components. 
+The metadata server will query those external services based on URLs.
+It also possible to provide the SSL keys for the https communication.
+(Those variables have already been defined in the previous sections)
+
 ```shell
-# Setup the postgresql data url
+# Setup the postgresql data url.
 export PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
 
-# Configure the parsec blockstore. 
+# Configure the parsec blockstore url. 
 $ export PARSEC_BLOCKSTORE=s3:localhost\:4566:region1:parsec:user:password
+
+# SSL certificate and key filenames.
+$ export PARSEC_SSL_KEYFILE=$PWD/ssl-testing/parsec.test.key
+$ export PARSEC_SSL_CERTFILE=$PWD/ssl-testing/parsec.test.cert
 ```
 
-Setup parsec internals 
+The way for the client to access the metadata parsec server need to be configured. It is a different option than the Parsec Host. This variable need to consider the network architecture (for example, the reverse proxy address can be setup there). This option defined the way for the client to reach the metadata server. This variable is used to compute parsec link and to generate invitation emails.
 ```shell
 # URL to reach the the parsec metadata server (used in invitation emails).
 export PARSEC_BACKEND_ADDR=parsec://localhost:6677
+```
 
-# secret administation token used to create organization
+In order for the administrator to perform administration operation, such as organization creation, the metadata server needs a secret administration token.
+```shell
+# secret administration token used to create organization
 export PARSEC_ADMINISTRATION_TOKEN=s3cr3t
 ```
 
 
 Start the parsec server
 --------------------
+The parsec installation is now completed. The following commands can help to assert the configuration
 
 Check settings
 ```shell
@@ -270,8 +286,7 @@ PARSEC_SSL_CERTFILE=/home/user/ssl-testing/parsec.test.cert  # Optional
 source ./venv/bin/activate
 ```
 
-If the postgresql database is new (or if it's the first time parsec runs), database tables need be created:
-
+If the postgresql database is new (or if it's the first time parsec runs), database tables need be created. This can also be run ofter a parsec backend update.
 
 ```shell
 # Create parsec database tables
@@ -283,4 +298,8 @@ Migrate ✔
 0004_invite.sql ✔
 0005_redacted_certificates.sql ✔
 ```
+
+
+The metadata server can now be started
+
 
