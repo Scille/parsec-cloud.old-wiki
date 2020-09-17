@@ -278,7 +278,6 @@ Start the parsec server
 --------------------
 The parsec installation is now completed. The following commands can help to assert the configuration
 
-Check settings
 ```shell
 # Check your parsec configuration
 $ env | grep PARSEC
