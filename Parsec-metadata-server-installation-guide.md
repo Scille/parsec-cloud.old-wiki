@@ -10,7 +10,7 @@ The parsec metadata server requires the access to a [PostgreSQL](https://www.pos
 In the case of a test environment, it might be simpler to run a postgresql database in a docker container. The following setup commands are provided for convenience:
 ```shell
 # Run a detached postgres container called `parsec-postgres`
-$ docker run -d \
+$ docker run -d --rm \
   --name parsec-postgres \
   -e POSTGRES_USER=parsec \
   -e POSTGRES_PASSWORD=DBPASS \
