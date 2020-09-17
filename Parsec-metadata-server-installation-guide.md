@@ -48,45 +48,59 @@ The parsec metadata server requires to access a cloud storage service to store t
 
 In the case of a test environment, a s3 storage can be setup through the [localstack](https://github.com/localstack/localstack) docker container using the following commands:
 ```shell
-# Aws requires SSL certifactes
+# Create a directory for S3 persistent data and certificates
+$ mkdir -p s3-testing
+$ export S3_TESTING_DIR=$PWD/s3-testing
+
 # Generate autosigned certificate (keys and cert)
-$ mkdir s3-ssl-cert -p
 $ openssl req -batch \
-    -x509 -sha256 -nodes -days 365 -newkey rsa:4096 \
-    -keyout s3-ssl-cert/server.test.pem.key \
-    -out s3-ssl-cert/server.test.pem.crt \
-    -addext "subjectAltName = DNS:localhost"
-$ cat s3-ssl-cert/server.test.pem.key s3-ssl-cert/server.test.pem.crt > s3-ssl-cert/server.test.pem
+  -x509 -sha256 -nodes -days 365 -newkey rsa:4096 \
+  -addext "subjectAltName = DNS:localhost" \
+  -keyout $S3_TESTING_DIR/server.test.pem.key \
+  -out $S3_TESTING_DIR/server.test.pem.crt
 
-# Setup environment variable 
-# Define cert directory for S3 server
-$ export S3_SERVER_CERT_DIR=$PWD/s3-ssl-cert/
-# Define cert path for S3 client
-$ export AWS_CA_BUNDLE=$PWD/s3-ssl-cert/server.test.pem.crt
+# Generate a pem file for the S3 server
+$ cat $S3_TESTING_DIR/server.test.pem.key $S3_TESTING_DIR/server.test.pem.crt > $S3_TESTING_DIR/server.test.pem
 
-# Start docker service
-$ docker run -p 4566:4566 \
-    -e "SERVICES=s3" --name s3 \
-    -v $S3_SERVER_CERT_DIR:/tmp/localstack \
-    -d  localstack/localstack
+# Export the certificate path for S3 client
+$ export AWS_CA_BUNDLE=$S3_TESTING_DIR/server.test.pem.crt
+
+# Run a detached postgres container called `parsec-s3`
+$ docker run -d --rm \
+  --name parsec-s3 \
+  -e SERVICES=s3 \
+  -e DATA_DIR=/tmp/localstack/data \
+  -p 4566:4566 \
+  -v $S3_TESTING_DIR:/tmp/localstack \
+  localstack/localstack
+```
 
 # Check docker container is running
 $ docker container ls -l
-CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                                             NAMES
-18bc659b7eca        localstack/localstack   "docker-entrypoint.sh"   58 seconds ago      Up 57 seconds       4567-4597/tcp, 0.0.0.0:4566->4566/tcp, 8080/tcp   s3
+CONTAINER ID   IMAGE                   COMMAND                  CREATED              STATUS              PORTS   NAMES
+7f4d8467dde9   localstack/localstack   "docker-entrypoint.sh"   About a minute ago   Up About a minute   [...]   parsec-s3
 
-# Containers logs can be displayed sing 
+# For your information, you can get containers logs using
 $ docker logs s3
+[...]
+Running on 0.0.0.0:4566 over https (CTRL + C to quit)
+Running on 0.0.0.0:38105 over http (CTRL + C to quit)
 
-# Install aws client
+# The S3 object storage should now be exposed as an HTTPS service on port 4566
+# The data is stored persistently at `$S3_TESTING_DIR/data`
+
+# Install AWS client and setup AWS credential with dummy values
+$ sudo apt update
 $ sudo apt install awscli
-
-# Setup aws credential 
-# aws requires to be configured 
 $ aws configure
+AWS Access Key ID [****************]:
+AWS Secret Access Key [****************]:
+Default region name [None]:
+Default output format [None]:
 
-# Create aws s3 bucket
+# Create the parsec S3 bucket using the AWS client
 $ aws --endpoint-url https://localhost:4566 s3 mb s3://parsec
+make_bucket: parsec
 ```
 
 Package requirements
