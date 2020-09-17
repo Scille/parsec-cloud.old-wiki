@@ -48,10 +48,13 @@ The parsec metadata server requires to access a cloud storage service to store t
 
 In the case of a test environment, a s3 storage can be setup through the [localstack](https://github.com/localstack/localstack) docker container using the following commands:
 ```shell
+# Aws requires SSL certifactes
 # Generate autosigned certificate (keys and cert)
 $ mkdir s3-ssl-cert -p
 $ openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout s3-ssl-cert/server.test.pem.key -out s3-ssl-cert/server.test.pem.crt
 $ cat s3-ssl-cert/server.test.pem.key s3-ssl-cert/server.test.pem.crt > s3-ssl-cert/server.test.pem
+
+# Setup environment variable 
 # Define cert directory for S3 server
 $ export S3_SERVER_CERT_DIR=$PWD/s3-ssl-cert/
 # Define cert path for S3 client
@@ -65,13 +68,14 @@ $ docker container ls -l
 CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                                             NAMES
 18bc659b7eca        localstack/localstack   "docker-entrypoint.sh"   58 seconds ago      Up 57 seconds       4567-4597/tcp, 0.0.0.0:4566->4566/tcp, 8080/tcp   s3
 
-# For your information, you can get containers logs using 
+# Containers logs can be displayed sing 
 $ docker logs s3
 
 # Install aws client
 $ sudo apt install awscli
 
 # Setup aws credential 
+# aws requires to be configured 
 $ aws configure
 
 # Create aws s3 bucket
