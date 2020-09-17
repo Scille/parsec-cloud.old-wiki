@@ -14,7 +14,7 @@ From a security standpoint, the installation of those components is outside the 
 
 As configuring those components properly can be tedious, this guide provides instructions for quickly setting up mockups or basic install for the required services. Keep in mind that those instructions are provided for convenience and should not be used in production.
 
-Those mockups are meant to run in docker containers. In order to install docker, please use the following commands
+Those mockups are meant to run in docker containers. In order to install docker, please use the following commands:
 
 ```shell
 # Update the list of available packages
