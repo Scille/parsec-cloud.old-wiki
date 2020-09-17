@@ -60,7 +60,7 @@ The postgres service is running on port 5432 in the container, but exposed on po
 
 Now export the postgresql URL as `PARSEC_DB` and make sure the parsec database is accessible:
 
-```
+```shell
 # Export the database URL as `PARSEC_DB`
 $ export PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
 
