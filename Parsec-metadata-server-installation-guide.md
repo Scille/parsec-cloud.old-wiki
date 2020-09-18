@@ -346,11 +346,7 @@ $ parsec.cli core create_organization --help
 Usage: parsec.cli core create_organization [OPTIONS] NAME
 
 Options:
-  -B, --addr FROM_URL             [required]
-  -T, --administration-token TEXT
-                                  [required]
-  -E, --expiration-date [%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]
-  --help                          Show this message and exit
+[...]
 ```
 
 The following line can be used to create an organization with the mockups based environment:
