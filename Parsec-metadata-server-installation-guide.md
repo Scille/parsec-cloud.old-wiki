@@ -291,7 +291,7 @@ Parsec can be configured through environment variables.
 
 The example bellow covers the configuration for a mockups based environment.
 
-First configure parsec host and port. This defined which network interfaces will be used to serve the metadata server.
+First configure parsec host and port. This defines which network interfaces will be used to serve the metadata server.
 
 ```shell
 # Configure the parsec server bind address (default is 127.0.0.1)
@@ -319,7 +319,7 @@ $ export PARSEC_SSL_KEYFILE=$PWD/ssl-testing/parsec.test.key
 $ export PARSEC_SSL_CERTFILE=$PWD/ssl-testing/parsec.test.cert
 ```
 
-The way for the client to access the metadata parsec server need to be configured. It is a different option than the Parsec Host. This variable need to consider the network architecture (for example, the reverse proxy address can be setup there). This option defined the way for the client to reach the metadata server. This variable is used to compute parsec link and to generate invitation emails. The backend address is setup as a parsec url: `parsec://host:port`
+The way for the client to access the metadata parsec server need to be configured. It is a different option than the Parsec Host. This variable need to consider the network architecture (for example, the reverse proxy address can be setup there). This option defines the way for the client to reach the metadata server. This variable is used to compute parsec link and to generate invitation emails. The backend address is setup as a parsec url: `parsec://host:port`
 ```shell
 # URL to reach the the parsec metadata server (used in invitation emails).
 export PARSEC_BACKEND_ADDR=parsec://localhost:6777
@@ -347,8 +347,15 @@ PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
 PARSEC_ADMINISTRATION_TOKEN=s3cr3t
 PARSEC_SSL_KEYFILE=/home/user/ssl-testing/parsec.test.key 
 PARSEC_SSL_CERTFILE=/home/user/ssl-testing/parsec.test.cert 
+PARSEC_EMAIL_HOST=localhost
+PARSEC_EMAIL_PORT=1025
+PARSEC_EMAIL_SENDER=parsec@my-company.com
+PARSEC_EMAIL_HOST_USER=dummy-user
+PARSEC_EMAIL_HOST_PASSWORD=dummy-password
+PARSEC_EMAIL_USE_SSL=false
+PARSEC_EMAIL_USE_TLS=false
 
-# Be sure to activate the virtual env
+# Make sure that the parsec virtual env is activated
 $ source ./venv/bin/activate
 ```
 
