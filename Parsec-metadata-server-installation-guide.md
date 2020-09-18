@@ -4,11 +4,13 @@ This guide covers the installation procedure for the parsec metadata server (usu
 1. [Preamble](#Preamble)
 2. [Database requirements](#Database-requirements)
 3. [Object storage requirements](#Object-storage-requirements)
-4. [SSL configuration](#SSL-configuration)
-5. [Parsec metadata server installation](#Parsec-metadata-server-installation)
-6. [Server configuration](#Server-configuration)
-7. [Start the parsec server](#Start-the-parsec-server)
-8. [Create an organization](#Create-an-organization)
+4. [SMTP server requirements](#SMTP-server-requirements)
+5. [SSL configuration](#SSL-configuration)
+6. [Parsec metadata server installation](#Parsec-metadata-server-installation)
+7. [Server configuration](#Server-configuration)
+8. [Start the parsec server](#Start-the-parsec-server)
+9. [Create an organization](#Create-an-organization)
+
 
 Preamble
 --------
@@ -153,6 +155,62 @@ $ export PARSEC_BLOCKSTORE=s3:localhost\\:4566:region1:parsec:dummy-user:dummy-p
 ```
 
 Again, remember that those commands are provided for convenience in the case of a test environment. For more information about how to securely set up an S3 bucket, please refer to [the official documentation](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html).
+
+
+SMTP server requirements
+------------------------
+
+The parsec metadata server requires the access to an SMTP server in order to send email, when a new user is invited into an organization for instance.
+
+For a test environment, an SMTP mockup server can be used to expose a web interface showing the emails that were meant to be sent. Here's the instructions to run [MailHog](https://github.com/mailhog/MailHog) in a docker container:
+
+```shell
+# Run a detached localstack container called `parsec-smtp`
+$ docker run -d --rm --name parsec-smtp -p 8025:8025 -p 1025:1025 mailhog/mailhog
+
+# Check docker container is running
+$ docker ps -l
+CONTAINER ID   IMAGE             CREATED        STATUS         PORTS   NAMES
+72b6b8ad751e   mailhog/mailhog   6 seconds ago  Up 5 seconds   [...]   parsec-smtp
+
+# For more information, show the container logs
+$ docker logs parsec-smtp
+[...]
+2020/09/18 14:38:27 [SMTP] Binding to address: 0.0.0.0:1025
+2020/09/18 14:38:27 Serving under http://0.0.0.0:8025/
+```
+
+See below the corresponding configuration using the parsec environment variables. The mockup server can be tested by sending a dummy email using curl and displaying it through the web interface:
+
+```
+# Export the email server access configuration
+$ export PARSEC_EMAIL_HOST=localhost
+$ export PARSEC_EMAIL_PORT=1025
+$ export PARSEC_EMAIL_SENDER=parsec@my-company.com
+$ export PARSEC_EMAIL_HOST_USER=dummy-user
+$ export PARSEC_EMAIL_HOST_PASSWORD=dummy-password
+
+# Send a dummy email using curl
+$ sudo apt update
+$ sudo apt install curl
+$ curl \
+  --url "smtp://$PARSEC_EMAIL_HOST:$PARSEC_EMAIL_PORT" \
+  --user "$PARSEC_EMAIL_HOST_USER@localhost:PARSEC_EMAIL_HOST_PASSWORD" \
+  --mail-from $PARSEC_EMAIL_SENDER \
+  --mail-rcpt rcpt@test.com \
+  --upload-file <(echo body)
+
+# Make sure the mail has been correctly sent to the SMTP mockup server
+$ sensible-browser http://localhost:8025
+```
+
+Note that this SMTP mockup server does not run with SSL or TLS, which is not recommended for a production server. Make sure to follow the recommendation of the official documentation for the SMTP server. In order to enable explicit or implicit TLS, please use the following parsec environment variables.
+```shell
+# Wether explicit TLS (typically port 587) should be used for connecting to the SMTP server
+$ export PARSEC_EMAIL_USE_SSL=false  # or `true`
+# Wether implicit TLS (typically port 465) should be used for connecting to the SMTP server
+$ export PARSEC_EMAIL_USE_TLS=false  # or `true`
+```
 
 
 SSL configuration
