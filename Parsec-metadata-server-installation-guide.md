@@ -231,7 +231,7 @@ Server configuration
 
 Parsec can be configured through environment variables. 
 
-The example bellow covers the configuration for a mocked up environment.
+The example bellow covers the configuration for a mockups based environment.
 
 First configure parsec host and port. This defined which network interfaces will be used to serve the metadata server.
 
@@ -318,5 +318,22 @@ Starting Parsec Backend on 127.0.0.1:6777 (db=POSTGRESQL blockstore=S3 backend_a
 
 Create an organization
 --------------------
+
+Administrative operation requires the installation of the [parsec client](https://docs.parsec.cloud/en/latest/userguide/installation.html).
+To create an organization, the parsec metadata server 
+ An organization can be created using the `administration_token` configured in the parsec metadata server.
+
+```shell
+$ parsec core create_organization --help
+Usage: parsec core create_organization [OPTIONS] NAME
+
+Options:
+  -B, --addr FROM_URL             [required]
+  -T, --administration-token TEXT
+                                  [required]
+  -E, --expiration-date [%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]
+  --help                          Show this message and exit
+```
+
 
 //TODO
