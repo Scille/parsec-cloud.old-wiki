@@ -418,7 +418,7 @@ The following line can be used to create an organization with the mockups based 
 $ parsec.cli core create_organization TestOrganization
 Creating organization in backend ✔
 Bootstrap organization url: 
-  parsec://127.0.0.1:6777/TestOrganization?action=bootstrap_organization&token=79cc833[...]
+    parsec://127.0.0.1:6777/TestOrganization?action=bootstrap_organization&token=79cc833[...]
 
 ```
 
