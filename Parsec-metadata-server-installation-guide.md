@@ -319,7 +319,7 @@ Starting Parsec Backend on 127.0.0.1:6777 (db=POSTGRESQL blockstore=S3 backend_a
 Create an organization
 --------------------
 
-Administrative operation requires the installation of the [parsec client](https://docs.parsec.cloud/en/latest/userguide/installation.html). This operation can be performed on an other machine than the 
+Administrative operation requires the installation of the [parsec client](https://docs.parsec.cloud/en/latest/userguide/installation.html). This operation can be performed on an other machine than the metadataserver.
 
 To create an organization, the administrator need to provide:
  - The parsec metadata server location, through a parsec url `parsec://hostname:port`
