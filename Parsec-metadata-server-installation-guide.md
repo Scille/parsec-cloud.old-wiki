@@ -287,8 +287,8 @@ PARSEC_BLOCKSTORE=s3:localhost\:4566:region1:parsec:user:password
 PARSEC_BACKEND_ADDR=parsec://localhost:6677
 PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
 PARSEC_ADMINISTRATION_TOKEN=s3cr3t
-PARSEC_SSL_KEYFILE=/home/user/ssl-testing/parsec.test.key  # Optional
-PARSEC_SSL_CERTFILE=/home/user/ssl-testing/parsec.test.cert  # Optional
+PARSEC_SSL_KEYFILE=/home/user/ssl-testing/parsec.test.key 
+PARSEC_SSL_CERTFILE=/home/user/ssl-testing/parsec.test.cert 
 
 # Be sure to activate the virtual env
 $ source ./venv/bin/activate
