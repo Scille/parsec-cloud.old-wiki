@@ -264,7 +264,7 @@ $ export PARSEC_SSL_CERTFILE=$PWD/ssl-testing/parsec.test.cert
 The way for the client to access the metadata parsec server need to be configured. It is a different option than the Parsec Host. This variable need to consider the network architecture (for example, the reverse proxy address can be setup there). This option defined the way for the client to reach the metadata server. This variable is used to compute parsec link and to generate invitation emails. The backend address is setup as a parsec url: `parsec://host:port`
 ```shell
 # URL to reach the the parsec metadata server (used in invitation emails).
-export PARSEC_BACKEND_ADDR=parsec://localhost:6677
+export PARSEC_BACKEND_ADDR=parsec://localhost:6777
 ```
 
 In order for the administrator to perform administration operation, such as organization creation, the metadata server needs a secret administration token.
@@ -282,9 +282,9 @@ The parsec installation is now completed. The following commands can help to ass
 # Check your parsec configuration
 $ env | grep PARSEC
 PARSEC_HOST=localhost
-PARSEC_PORT=6677
+PARSEC_PORT=6777
 PARSEC_BLOCKSTORE=s3:localhost\:4566:region1:parsec:user:password
-PARSEC_BACKEND_ADDR=parsec://localhost:6677
+PARSEC_BACKEND_ADDR=parsec://localhost:6777
 PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
 PARSEC_ADMINISTRATION_TOKEN=s3cr3t
 PARSEC_SSL_KEYFILE=/home/user/ssl-testing/parsec.test.key 
@@ -311,7 +311,7 @@ Migrate ✔
 The metadata server can now be started
 ```shell
 $ parsec backend run
-Starting Parsec Backend on 127.0.0.1:6777 (db=POSTGRESQL blockstore=S3 backend_addr=parsec://localhost:6677 email_config=MockedEmailConfig(sender=no-reply@parsec.com, tmpdir=/tmp/tmp-email-folder-w_anjztu))
+Starting Parsec Backend on 127.0.0.1:6777 (db=POSTGRESQL blockstore=S3 backend_addr=parsec://localhost:6777 email_config=MockedEmailConfig(sender=no-reply@parsec.com, tmpdir=/tmp/tmp-email-folder-w_anjztu))
 
 ```
 
@@ -342,9 +342,9 @@ Options:
 The following line can be used to create an organization with the mockups based environment:
 ```shell
 $ parsec.cli core create_organization --administration-token=s3cr3t \
-     --addr=parsec://localhost:6677 TestOrganization
+     --addr=parsec://localhost:6777 TestOrganization
 Creating organization in backend ✔
-Bootstrap organization url: parsec://127.0.0.1:6677/TestOrganization?action=bootstrap_organization&token=79cc833ccb3d923479894578f6ebeada2681c1957aa17df03d618f121a608abf&no_ssl=true
+Bootstrap organization url: parsec://127.0.0.1:6777/TestOrganization?action=bootstrap_organization&token=79cc833ccb3d923479894578f6ebeada2681c1957aa17df03d618f121a608abf&no_ssl=true
 
 ```
 
