@@ -399,8 +399,6 @@ $ sudo snap install parsec --classic
 It is needed to start a new terminal session to perform administration action on the test environment. Some variables need to be set on this fresh session. (The virtual environment used for the parsec backend shall not be used there).
 
 ```shell
-$ export PARSEC_ADDR=parsec://localhost:6777
-$ export PARSEC_ADMINISTRATION_TOKEN=s3cr3t
 $ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
 ```
 The client installation can be tested with the following command.
@@ -415,7 +413,7 @@ Options:
 
 The following line can be used to create an organization with the mockups based environment:
 ```shell
-$ parsec.cli core create_organization TestOrganization
+$ parsec.cli core create_organization --addr=parsec://localhost:6777 -T s3cr3t TestOrganization
 Creating organization in backend ✔
 Bootstrap organization url: 
     parsec://127.0.0.1:6777/TestOrganization?action=bootstrap_organization&token=79cc833[...]
