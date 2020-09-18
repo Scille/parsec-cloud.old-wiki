@@ -312,7 +312,7 @@ It also possible to provide the SSL keys for the https communication.
 $ export PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec
 
 # Configure the parsec blockstore url
-$ export PARSEC_BLOCKSTORE=s3:localhost\:4566:region1:parsec:user:password
+$ export PARSEC_BLOCKSTORE=s3:localhost\\:4566:region1:parsec:user:password
 
 # SSL certificate and key filenames
 $ export PARSEC_SSL_KEYFILE=$PWD/ssl-testing/parsec.test.key
