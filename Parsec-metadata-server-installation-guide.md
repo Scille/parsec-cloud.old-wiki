@@ -329,7 +329,7 @@ To create an organization, the administrator need to provide:
 
 The parsec client can be installed on the test machine from snap:
 ```shell
-$ snap install 
+$ sudo snap install parsec --classic
 ```
 
 It is needed to start a new terminal session to perform administration action on the test environment. Some variables need to be set on this fresh session. (The virtual environment used for the parsec backend shall not be used there).
