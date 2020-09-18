@@ -204,7 +204,7 @@ $ curl \
 $ sensible-browser http://localhost:8025
 ```
 
-Note that this SMTP mockup server does not run with SSL or TLS, which is not recommended for a production server. Make sure to follow the recommendation of the official documentation for the SMTP server. In order to enable explicit or implicit TLS, please use the following parsec environment variables.
+Note that this SMTP mockup server does not run with SSL or TLS, which is not recommended for a production server. Make sure to follow the recommendation of the official documentation for your particular SMTP server. In order to enable explicit or implicit TLS, please use the following parsec environment variables.
 ```shell
 # Wether explicit TLS (typically port 587) should be used for connecting to the SMTP server
 $ export PARSEC_EMAIL_USE_SSL=false  # or `true`
