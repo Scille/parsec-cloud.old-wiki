@@ -294,7 +294,7 @@ PARSEC_SSL_CERTFILE=/home/user/ssl-testing/parsec.test.cert  # Optional
 $ source ./venv/bin/activate
 ```
 
-If the postgresql database is new (or if it's the first time parsec runs), database tables need be created. This can also be run ofter a parsec backend update.
+If the postgresql database is new (or if it's the first time parsec runs), database tables need be created. This can also be run after a parsec backend update.
 
 ```shell
 # Create parsec database tables
