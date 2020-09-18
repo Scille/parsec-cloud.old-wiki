@@ -329,7 +329,7 @@ To create an organization, the administrator need to provide:
 
 ```shell
 $ parsec core create_organization --help
-Usage: parsec core create_organization [OPTIONS] NAME
+Usage: parsec.cli core create_organization [OPTIONS] NAME
 
 Options:
   -B, --addr FROM_URL             [required]
@@ -341,7 +341,7 @@ Options:
 
 The following line can be used to create an organization with the mockups based environment:
 ```shell
-$ parsec core create_organization --administration-token=s3cr3t \
+$ parsec.cli core create_organization --administration-token=s3cr3t \
      --addr=parsec://localhost:6677 TestOrganization
 Creating organization in backend ✔
 Bootstrap organization url: parsec://127.0.0.1:6677/TestOrganization?action=bootstrap_organization&token=79cc833ccb3d923479894578f6ebeada2681c1957aa17df03d618f121a608abf&no_ssl=true
