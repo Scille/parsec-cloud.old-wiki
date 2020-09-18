@@ -319,9 +319,13 @@ Starting Parsec Backend on 127.0.0.1:6777 (db=POSTGRESQL blockstore=S3 backend_a
 Create an organization
 --------------------
 
-Administrative operation requires the installation of the [parsec client](https://docs.parsec.cloud/en/latest/userguide/installation.html).
-To create an organization, the parsec metadata server 
- An organization can be created using the `administration_token` configured in the parsec metadata server.
+Administrative operation requires the installation of the [parsec client](https://docs.parsec.cloud/en/latest/userguide/installation.html). This operation can be performed on an other machine than the 
+
+To create an organization, the administrator need to provide:
+ - The parsec metadata server location, through a parsec url `parsec://hostname:port`
+ - The `administration_token` configured in the parsec metadata server.
+ - An organization name
+
 
 ```shell
 $ parsec core create_organization --help
@@ -335,5 +339,12 @@ Options:
   --help                          Show this message and exit
 ```
 
+The following line can be used to create an organization with the mockups based environment:
+```shell
+$ parsec core create_organization --administration-token=s3cr3t --addr=parsec://localhost:6677 TestOrganization
+Creating organization in backend ✔
+Bootstrap organization url: parsec://127.0.0.1:6677/TestOrganization?action=bootstrap_organization&token=79cc833ccb3d923479894578f6ebeada2681c1957aa17df03d618f121a608abf&no_ssl=true
 
-//TODO
+```
+
+This command provides a parsec url to bootstrap the organization from the parsec GUI (By pasting this url in `Join an organization` from the GUI menu`)
