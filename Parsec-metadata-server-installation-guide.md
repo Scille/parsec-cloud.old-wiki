@@ -332,11 +332,17 @@ The parsec client can be installed on the test machine from snap:
 $ snap install 
 ```
 
-It is needed to start a new terminal session to perform administration action on the test environment. Some variables need to be set on this fresh session
-
+It is needed to start a new terminal session to perform administration action on the test environment. Some variables need to be set on this fresh session. (The virtual environment used for the parsec backend shall not be used there).
 
 ```shell
-$ parsec core create_organization --help
+$ export PARSEC_ADDR=parsec://localhost:6777
+$ export PARSEC_ADMINISTRATION_TOKEN=s3cr3t
+$ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
+```
+The client installation can be tested with the following command.
+
+```shell
+$ parsec.cli core create_organization --help
 Usage: parsec.cli core create_organization [OPTIONS] NAME
 
 Options:
