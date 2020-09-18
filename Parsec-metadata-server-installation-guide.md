@@ -418,13 +418,13 @@ The following line can be used to create an organization with the mockups based 
 $ parsec.cli core create_organization --administration-token=s3cr3t \
      --addr=parsec://localhost:6777 TestOrganization
 Creating organization in backend ✔
-Bootstrap organization url: parsec://127.0.0.1:6777/TestOrganization?action=bootstrap_organization&token=79cc833ccb3d923479894578f6ebeada2681c1957aa17df03d618f121a608abf&no_ssl=true
+Bootstrap organization url: parsec://127.0.0.1:6777/TestOrganization?action=bootstrap_organization&token=79cc833ccb3d923479894578f6ebeada2681c1957aa17df03d618f121a608abf
 
 ```
 
 This command provides a parsec url to bootstrap the organization from the parsec GUI. It can be used in the parsec gui through `Join an organization` from the GUI menu, or directly used as GUI argument:
 
 ```shell
-parsec parsec://127.0.0.1:6777/TestOrganization?action=bootstrap_organization&token=79cc833ccb3d923479894578f6ebeada2681c1957aa17df03d618f121a608abf&no_ssl=
+parsec parsec://127.0.0.1:6777/TestOrganization?action=bootstrap_organization&token=79cc833ccb3d923479894578f6ebeada2681c1957aa17df03d618f121a608abf
 ```
 
