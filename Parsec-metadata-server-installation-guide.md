@@ -362,4 +362,4 @@ Bootstrap organization url: parsec://127.0.0.1:6777/TestOrganization?action=boot
 
 ```
 
-This command provides a parsec url to bootstrap the organization from the parsec GUI (By pasting this url in `Join an organization` from the GUI menu`)
+This command provides a parsec url to bootstrap the organization from the parsec GUI (By pasting this url in `Join an organization` from the GUI menu)
