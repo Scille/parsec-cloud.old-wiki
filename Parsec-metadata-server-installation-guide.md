@@ -429,7 +429,7 @@ Options:
 [...]
 ```
 
-In order to avoid confusion between the administration environment (using the client application) and the metadata server environment (with the virtual env and the properly configured environment variables), make sure to use two different terminal sessions. If the server uses a self-signed certificate for testing purposes, make sure to point the client application to this certificate using the `SSL_CAFILE` environment variable:
+In order to avoid confusion between the administration environment (using the client application) and the metadata server environment (with the virtual env and the properly configured environment variables), make sure to use two different terminal sessions. If the server uses a [self-signed certificate][ssl] for testing purposes, make sure to point the client application to this certificate using the `SSL_CAFILE` environment variable:
 
 ```shell
 $ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
