@@ -409,7 +409,7 @@ Starting Parsec Backend on 127.0.0.1:6777
 Create an organization
 --------------------
 
-Administrative operation requires the installation of the [parsec client](https://docs.parsec.cloud/en/latest/userguide/installation.html). This operation can be performed on an other machine than the metadata server. To create an organization, the administrator need to provide:
+Administrative operation requires the installation of the [parsec client application](https://docs.parsec.cloud/en/latest/userguide/installation.html). This operation can be performed on an other machine than the metadata server. To create an organization, the administrator need to provide:
 
  - The [parsec][parsec] metadata server location, through a parsec url `parsec://hostname:port`
  - The `administration_token` configured in the [parsec][parsec] metadata server.
