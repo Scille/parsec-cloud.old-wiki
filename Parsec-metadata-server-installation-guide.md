@@ -363,7 +363,7 @@ Start the parsec server
 The [Parsec][parsec] metadata server installation is now completed. The following commands can help to assert the configuration:
 
 ```shell
-# Check your parsec configuration
+# Check the current parsec configuration
 $ env | grep PARSEC
 PARSEC_HOST=localhost
 PARSEC_PORT=6777
@@ -435,7 +435,7 @@ In order to avoid confusion between the administration environment (using the cl
 $ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
 ```
 
-New organizations are now ready to be created. Find below the command used to create an organization using the configuration from our earlier server example:
+New organizations are now ready to be created. Find below the command used to create an organization using the configuration from the above server example:
 
 ```shell
 $ parsec.cli core create_organization --addr=parsec://localhost:6777 -T s3cr3t TestOrganization
