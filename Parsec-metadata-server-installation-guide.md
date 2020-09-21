@@ -446,12 +446,17 @@ Bootstrap organization url:
 
 ```
 
-This command provides a parsec URL to bootstrap the organization from the [parsec][parsec] client application. This can be done through `Join an organization` item from the application menu, or directly used as the application argument:
+The organization has been successully created! All that is left to do is to send this bootstrap URL to the first user of the organization, along with instructions on how to [download](https://parsec.cloud/get-parsec) and [install](https://docs.parsec.cloud/en/latest/userguide/installation.html) the parsec client application. Once the application is installed, the bootstrap procedure can be triggered by either:
 
-```shell
-# Do not forget the quotes
-parsec "parsec://127.0.0.1:6777/TestOrganization?action=bootstrap_organization&token=79cc833[...]"
-```
+- Clicking on the `parsec://` link
+- Opening the application and paste the link in the "Join Organization" dialog
+
+Following the instructions will lead to the creation the first user on this particular device, as shown in the [parsec user documentation](https://docs.parsec.cloud/en/latest/userguide/new_organization.html), from the dialog titled "Boostrap the organization". Note that it's important for this first user to perform the boostrap operation on one of their device as the creation of the user includes the generation of a password-protected private key, stored on the device drive.
+
+It will then be the responsability of this first user to invite their first collaborators. 
+
+
+
 
 [parsec]: https://parsec.cloud/en
 [docker]: https://www.docker.com/
