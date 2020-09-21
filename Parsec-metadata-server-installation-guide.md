@@ -409,26 +409,19 @@ Starting Parsec Backend on 127.0.0.1:6777
 Create an organization
 --------------------
 
-Administrative operation requires the installation of the [parsec client application](https://docs.parsec.cloud/en/latest/userguide/installation.html). This operation can be performed on an other machine than the metadata server. To create an organization, the administrator need to provide:
+Administrative operations require the installation of the [parsec client application](https://docs.parsec.cloud/en/latest/userguide/installation.html). Those operations can be performed on another machine than the metadata server. In order to create an organization, the administrator needs to provide:
 
  - The [parsec][parsec] metadata server location, through a parsec url `parsec://hostname:port`
  - The `administration_token` configured in the [parsec][parsec] metadata server.
  - An organization name
 
-The parsec client can be installed on the test machine from snap:
+The parsec client can be installed on the test machine from [snap](https://snapcraft.io):
 
 ```shell
+# Install parsec using snap (requires the `--classic` option)
 $ sudo snap install parsec --classic
-```
 
-It is needed to start a new terminal session to perform administration action on the test environment. Some variables need to be set on this fresh session. (The virtual environment used for the parsec server shall not be used there).
-
-```shell
-$ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
-```
-The client installation can be tested with the following command.
-
-```shell
+# Make sure the parsec application CLI is available
 $ parsec.cli core create_organization --help
 Usage: parsec.cli core create_organization [OPTIONS] NAME
 
@@ -436,7 +429,13 @@ Options:
 [...]
 ```
 
-The following line can be used to create an organization with the mockups based environment:
+In order to avoid confusion between the administration environment (using the client application) and the metadata server environment (with the virtual env and the properly configured environment variables), make sure to use two different terminal sessions. If the server uses a self-signed certificate for testing purposes, make sure to point the client application to this certificate using the `SSL_CAFILE` environment variable:
+
+```shell
+$ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
+```
+
+New organizations are now ready to be created. Find below the command used to create an organization using the configuration from our earlier server example:
 
 ```shell
 $ parsec.cli core create_organization --addr=parsec://localhost:6777 -T s3cr3t TestOrganization
@@ -446,16 +445,14 @@ Bootstrap organization url:
 
 ```
 
-The organization has been successully created! All that is left to do is to send this bootstrap URL to the first user of the organization, along with instructions on how to [download](https://parsec.cloud/get-parsec) and [install](https://docs.parsec.cloud/en/latest/userguide/installation.html) the parsec client application. Once the application is installed, the bootstrap procedure can be triggered by either:
+The organization has been successfully created! All that is left to do is to send this bootstrap URL to the first user of the organization, along with instructions on how to [download](https://parsec.cloud/get-parsec) and [install](https://docs.parsec.cloud/en/latest/userguide/installation.html) the parsec client application. Once the application is installed, the bootstrap procedure can be triggered by either:
 
 - Clicking on the `parsec://` link
 - Opening the application and paste the link in the "Join Organization" dialog
 
-Following the instructions will lead to the creation the first user on this particular device, as shown in the [parsec user documentation](https://docs.parsec.cloud/en/latest/userguide/new_organization.html), from the dialog titled "Boostrap the organization". Note that it's important for this first user to perform the boostrap operation on one of their device as the creation of the user includes the generation of a password-protected private key, stored on the device drive.
+Following the instructions will lead to the creation the first user on this particular device, as shown in the [parsec user documentation](https://docs.parsec.cloud/en/latest/userguide/new_organization.html) (starting from the dialog titled "Bootstrap the organization"). Note that it's important for this first user to perform the bootstrap operation on one of their device as the creation of the user includes the generation of a password-protected private key, stored on the device drive.
 
-It will then be the responsability of this first user to invite their first collaborators. 
-
-
+It will then be the responsibility of this first user to invite their first collaborators, as described in the ["Create new users" section](https://docs.parsec.cloud/en/latest/userguide/new_user.html) of the user documentation. Users can also declare new devices by following the ["Create new devices" section](https://docs.parsec.cloud/en/latest/userguide/new_device.html). In both cases, invitation emails are going to be sent. In the context of the mockup SMTP server, remember that you can find those mails by browsing to the `http://localhost:8025` URL on the server machine.
 
 
 [parsec]: https://parsec.cloud/en
