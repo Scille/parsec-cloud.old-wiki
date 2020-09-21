@@ -48,7 +48,7 @@ $ sudo snap install docker
 
 # Assert docker installation completed
 $ docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+CONTAINER ID   IMAGE   COMMAND   CREATED   STATUS   PORTS   NAMES
 
 ```
 
