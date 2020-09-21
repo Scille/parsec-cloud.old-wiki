@@ -392,14 +392,8 @@ The metadata server can now be started
 ```shell
 $ parsec backend run
 Starting Parsec Backend on 127.0.0.1:6777 
-  (db=POSTGRESQL 
-   blockstore=S3 
-   backend_addr=parsec://localhost:6777 
-   email_config=SmtpEmailConfig
-     (sender=parsec@my-company.com, 
-      host=localhost, 
-      port=1025, 
-      use_ssl=False))
+  (db=POSTGRESQL blockstore=S3 backend_addr=parsec://localhost:6777 email_config=SmtpEmailConfig
+  (sender=parsec@my-company.com, host=localhost, port=1025, use_ssl=False))
 ```
 
 
