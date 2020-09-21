@@ -244,7 +244,7 @@ The communication between the parsec client and the parsec metadata server shoul
 - Running the server behind a reverse proxy like [NGINX](http://nginx.org/en/docs), [configured as an HTTPS server](http://nginx.org/en/docs/http/configuring_https_servers.html)
 - Passing a pair of [SSL certificate and key][ssl] explicitly to the parsec server using the `PARSEC_SSL_KEYFILE` and `PARSEC_SSL_CERTFILE` environment variables
 
-For a test environment, [self-signed SSL certificate][https://en.wikipedia.org/wiki/Public_key_certificate#TLS/SSL_server_certificate] can be generated using the following commands:
+For a test environment, [self-signed SSL certificate][ssl] can be generated using the following commands:
 
 ```shell
 
@@ -264,7 +264,7 @@ $ export PARSEC_SSL_CERTFILE=$PWD/ssl-testing/parsec.test.cert
 $ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
 ```
 
-Remember that [self-signed certificate][https://en.wikipedia.org/wiki/Public_key_certificate#TLS/SSL_server_certificate] should only be used in the context of a test environment. For more information about how to securely set up [SSL certificates][https://en.wikipedia.org/wiki/Public_key_certificate#TLS/SSL_server_certificate], please refer to the official resources of SSL certificate service providers like [Let's Encrypt](https://letsencrypt.org/).
+Remember that [self-signed certificate][ssl] should only be used in the context of a test environment. For more information about how to securely set up [SSL certificates][ssl], please refer to the official resources of SSL certificate service providers like [Let's Encrypt](https://letsencrypt.org/).
 
 Parsec metadata server installation
 -----------------------------------
