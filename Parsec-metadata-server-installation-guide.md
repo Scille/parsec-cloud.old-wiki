@@ -233,6 +233,7 @@ SSL configuration
 -----------------
 
 The communication between the parsec client and the parsec metadata server should be secured using SSL certificates. This can be done by either:
+
 - Running the server behind a reverse proxy like [NGINX](http://nginx.org/en/docs), [configured as an HTTPS server](http://nginx.org/en/docs/http/configuring_https_servers.html)
 - Passing a pair of SSL certificate and key explicitly to the parsec server using the `PARSEC_SSL_KEYFILE` and `PARSEC_SSL_CERTFILE` environment variables
 
