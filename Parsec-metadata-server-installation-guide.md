@@ -154,10 +154,10 @@ The S3 object storage should now be exposed as an HTTPS service on port 4566. Th
 $ sudo apt update
 $ sudo apt install awscli
 $ aws configure
-AWS Access Key ID [****************]:
-AWS Secret Access Key [****************]:
-Default region name [None]:
-Default output format [None]:
+AWS Access Key ID [None]: default
+AWS Secret Access Key [None]: default
+Default region name [None]: 
+Default output format [None]: 
 
 # Create the parsec S3 bucket using the AWS client
 $ aws --endpoint-url https://localhost:4566 s3 mb s3://parsec
