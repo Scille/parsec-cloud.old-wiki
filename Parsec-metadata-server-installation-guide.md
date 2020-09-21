@@ -295,6 +295,9 @@ $ source ./venv/bin/activate
 # Makes sure the python command points to the venv
 $ which python
 /home/user/venv/bin/python
+
+# Install wheel python package inside the virtual env
+$ pip install wheel
 ```
 
 The [parsec][parsec] metadata server is now ready to be installed through [pip](https://pip.pypa.io/en/stable/), using the `backend` switch:
