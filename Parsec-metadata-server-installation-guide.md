@@ -45,6 +45,11 @@ $ newgrp docker
 
 # Install docker through snap
 $ sudo snap install docker
+
+# Assert docker installation completed
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
 ```
 
 Database requirements
