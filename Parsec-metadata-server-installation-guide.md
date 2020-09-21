@@ -382,7 +382,7 @@ PARSEC_EMAIL_USE_TLS=false
 $ source ./venv/bin/activate
 ```
 
-If the postgresql database is new (or if it's the first time parsec runs), database tables need be created. This can also be run after a parsec server update:
+If the postgresql database is new (or if it's the first time parsec runs), the database tables need to be created. This can also be run after a parsec server update:
 
 ```shell
 # Create parsec database tables
