@@ -415,7 +415,7 @@ Administrative operations require the installation of the [parsec client applica
  - The `administration_token` configured in the [parsec][parsec] metadata server.
  - An organization name
 
-The parsec client can be installed on the test machine from [snap](https://snapcraft.io):
+The parsec client application can easily be installed on the server machine or another Ubuntu machine using [snap](https://snapcraft.io):
 
 ```shell
 # Install parsec using snap (requires the `--classic` option)
