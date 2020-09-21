@@ -34,6 +34,15 @@ $ sudo apt update
 # Install the snap service
 $ sudo apt install snapd
 
+# Create docker group
+$ sudo addgroup --system docker
+
+# Add current user to the docker group
+$ sudo adduser $USER docker
+
+# Reload groups
+$ newgrp docker
+
 # Install docker through snap
 $ sudo snap install docker
 ```
