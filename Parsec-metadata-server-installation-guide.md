@@ -16,6 +16,7 @@ Preamble
 --------
 
 The parsec metadata server depends on external components in order to work properly. This includes:
+
 - a PostgreSQL database to store the metadata
 - an S3 object storage to store the data blocks
 - an SMTP server for sending emails
