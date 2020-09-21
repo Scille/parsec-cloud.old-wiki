@@ -151,6 +151,7 @@ make_bucket: parsec
 ```
 The parsec S3 bucket is now ready to be accessed using the following URL:
 ```shell
+# Note: port customization is done by escaping `:` with a `\` (e.g `localhost\\:4566`)
 $ export PARSEC_BLOCKSTORE=s3:localhost\\:4566:region1:parsec:dummy-user:dummy-password
 ```
 
