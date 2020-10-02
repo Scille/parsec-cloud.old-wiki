@@ -40,6 +40,10 @@ b.setText(_("ACTION_BOOTSTRAP_ORGANIZATION_VALIDATE"))
 line_edit.setPlaceHolder(_("TEXT_BOOTSTRAP_ORGANIZATION_URL_PLACEHOLDER"))
 ```
 
+## Examples
+
+
+
 ## Resources
 
 [Microsoft International Terminology](https://www.microsoft.com/en-us/language)
