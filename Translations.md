@@ -39,10 +39,28 @@ b.setText(_("ACTION_BOOTSTRAP_ORGANIZATION_VALIDATE"))
 # or 
 line_edit.setPlaceHolder(_("TEXT_BOOTSTRAP_ORGANIZATION_URL_PLACEHOLDER"))
 ```
+To use variables in the translation string :
+```python
+b.setText(_("ACTION_BOOTSTRAP_ORGANIZATION_VALIDATE_organizationid-othervariable").format(organizationid=organization_id, othervariable=other_variable))
+```
+## Example
 
-## Examples
+In widgets :
+```python
+from parsec.core.gui.lang import translate as _
 
-
+number1 = 1
+number2 = 2
+my_label.setText("TEXT_MY_LABEL_number1-number2").format(
+                number1=number1,
+                number2=number2,
+            )
+```
+execute `python setup.py generate_pyqt_forms` then `python setup.py extract_translations`, the po files should have created the `msgid "TEXT_MY_LABEL_number1-number2"
+msgstr ""` fields.
+replace the `msgstr ""` in po files by the message you want:
+`msgstr "<b>number 1:</b> {number1}\n<b>number 2:</b> {number2}"`.
+When finished, execute `python setup.py extract_translations` again.
 
 ## Resources
 
