@@ -56,11 +56,23 @@ my_label.setText("TEXT_MY_LABEL_number1-number2").format(
                 number2=number2,
             )
 ```
-execute `python setup.py generate_pyqt_forms` then `python setup.py extract_translations`, the po files should have created the `msgid "TEXT_MY_LABEL_number1-number2"
-msgstr ""` fields.
-replace the `msgstr ""` in po files by the message you want:
-`msgstr "<b>number 1:</b> {number1}\n<b>number 2:</b> {number2}"`.
-When finished, execute `python setup.py extract_translations` again.
+Execute
+
+`python setup.py extract_translations`
+
+The po files should contain the newly created field :
+
+```
+msgid "TEXT_MY_LABEL_number1-number2"
+msgstr ""
+```
+
+Replace the `msgstr ""` in po files by the message you want:
+```
+msgstr "<b>number 1:</b> {number1}\n<b>number 2:</b> {number2}"
+```
+
+When finished, execute `python setup.py extract_translations` to correctly reformat the .po file, then `python setup.py generate_pyqt` to include the translations in the GUI.
 
 ## Resources
 
