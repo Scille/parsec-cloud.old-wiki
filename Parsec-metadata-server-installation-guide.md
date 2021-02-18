@@ -357,7 +357,7 @@ In order for the administrator to perform administration operation, such as orga
 # secret administration token used to create organization
 export PARSEC_ADMINISTRATION_TOKEN=s3cr3t
 ```
-Note that for safety reason, the `PARSEC_ADMINISTRATION_TOKEN` shall contain at least 16 characters (from 36 characters alphabet).
+Note that for safety reason, the `PARSEC_ADMINISTRATION_TOKEN` shall contain at least 16 characters (from 36 symbols alphabet).
 
 Start the parsec server
 --------------------
