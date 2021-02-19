@@ -54,6 +54,7 @@ $ docker ps
 CONTAINER ID   IMAGE   COMMAND   CREATED   STATUS   PORTS   NAMES
 
 ```
+Note: This guide does not cover multiple data storage and the RAID feature, the default server configuration does not used this feature and raid parameters will be ignored. 
 
 Database requirements
 ---------------------
