@@ -274,6 +274,8 @@ $ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
 Remember that [self-signed certificate][ssl] should only be used in the context of a test environment. For more information about how to securely set up [SSL certificates][ssl], please refer to the official resources of SSL certificate service providers like [Let's Encrypt](https://letsencrypt.org/). 
 
 Also note that for safety reason (outside of a test environment), private keys shall be protected, from other user for example (check users privileges), please refer to guides such [best practices for securing private keys](https://revocent.com/best-practices-for-securing-private-keys/)
+
+
 Parsec metadata server installation
 -----------------------------------
 
@@ -413,6 +415,13 @@ Starting Parsec Backend on 127.0.0.1:6777
   (db=POSTGRESQL blockstore=S3 backend_addr=parsec://localhost:6777 email_config=SmtpEmailConfig
   (sender=parsec@my-company.com, host=localhost, port=1025, use_ssl=False))
 ```
+
+Containers are now up and running and parsec metadataserver is now running. Data are stored on the hard drive and persist after each restart. Containers can be started (after a reboot for exemple) with:
+```
+docker start CONTAINER_ID
+```
+For service persistance and automatic restart, please refer to [the official documentation](https://docs.docker.com/config/containers/start-containers-automatically/#use-a-process-manager)
+
 
 Create an organization
 --------------------
