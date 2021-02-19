@@ -133,6 +133,10 @@ $ cat \
 $ export AWS_CA_BUNDLE=$S3_TESTING_DIR/server.test.pem.crt
 ```
 
+Remember that [self-signed certificate][ssl] should only be used in the context of a test environment. For more information about how to securely set up [SSL certificates][ssl], please refer to the official resources of SSL certificate service providers like [Let's Encrypt](https://letsencrypt.org/). 
+
+Also note that for safety reason (outside of a test environment), private keys shall be protected, from other user for example (check users privileges), please refer to guides such [best practices for securing private keys](https://revocent.com/best-practices-for-securing-private-keys/)
+
 Now run the S3 service using the [localstack](https://github.com/localstack/localstack) container:
 
 ```shell
@@ -266,8 +270,9 @@ $ export PARSEC_SSL_CERTFILE=$PWD/ssl-testing/parsec.test.cert
 $ export SSL_CAFILE=$PWD/ssl-testing/parsec.test.cert
 ```
 
-Remember that [self-signed certificate][ssl] should only be used in the context of a test environment. For more information about how to securely set up [SSL certificates][ssl], please refer to the official resources of SSL certificate service providers like [Let's Encrypt](https://letsencrypt.org/).
+Remember that [self-signed certificate][ssl] should only be used in the context of a test environment. For more information about how to securely set up [SSL certificates][ssl], please refer to the official resources of SSL certificate service providers like [Let's Encrypt](https://letsencrypt.org/). 
 
+Also note that for safety reason (outside of a test environment), private keys shall be protected, from other user for example (check users privileges), please refer to guides such [best practices for securing private keys](https://revocent.com/best-practices-for-securing-private-keys/)
 Parsec metadata server installation
 -----------------------------------
 
