@@ -10,6 +10,7 @@ This guide covers the installation procedure for the [parsec][parsec] metadata s
 7. [Server configuration](#server-configuration)
 8. [Start the parsec server](#start-the-parsec-server)
 9. [Create an organization](#create-an-organization)
+10. [Optional: Nginx configuration example](#optional-nginx-configuration-example)
 
 
 Preamble
@@ -470,6 +471,56 @@ The organization has been successfully created! All that is left to do is to sen
 Following the instructions will lead to the creation the first user on this particular device, as shown in the [parsec user documentation](https://docs.parsec.cloud/en/latest/userguide/new_organization.html) (starting from the dialog titled "Bootstrap the organization"). Note that it's important for this first user to perform the bootstrap operation on one of their device as the creation of the user includes the generation of a password-protected private key, stored on the device drive.
 
 It will then be the responsibility of this first user to invite their first collaborators, as described in the ["Create new users" section](https://docs.parsec.cloud/en/latest/userguide/new_user.html) of the user documentation. Users can also declare new devices by following the ["Create new devices" section](https://docs.parsec.cloud/en/latest/userguide/new_device.html). In both cases, invitation emails are going to be sent. In the context of the mockup SMTP server, remember that you can find those mails by browsing to the `http://localhost:8025` URL on the server machine.
+
+Optional: Nginx configuration example
+---------------
+
+It is recommanded to run the Parsec metaserver behind a nginx reverse proxy. Here a basic example of the nginx configurration.
+Install `nginx`:
+```bash
+$ sudo apt-get install nginx -y
+```
+
+Generate `pem` file:
+```bash
+$ cat $PARSEC_SSL_KEYFILE $PARSEC_SSL_CERTFILE > $PWD/ssl-testing/parsec.cloud.pem
+```
+
+Configure `nginx` to serve parsec:
+```
+events {
+
+}
+
+http {
+    server{
+        listen 80;
+        location / {
+            proxy_pass http://localhost:6777;
+        }
+    }
+
+    server {
+       listen 443 ssl;
+       ssl_certificate $PATH_TO_KEYS/ssl-testing/parsec.test.pem;
+       ssl_certificate_key $PATH_TO_KEYS/ssl-testing/parsec.test.key;
+       location / {
+            proxy_pass http://localhost:6777;
+       }
+    }
+}
+```
+Replace `$PATH_TO_KEYS` with the `ssl-testing` path and be sure that root user can read `parsec.test.pem` and `parsec.test.key`
+
+
+Now run `nginx` service:
+```
+$ sudo systemctl stop nginx
+$ sudo systemctl start nginx
+```
+
+
+
 
 
 [parsec]: https://parsec.cloud/en
