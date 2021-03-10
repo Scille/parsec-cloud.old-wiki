@@ -396,6 +396,8 @@ PARSEC_EMAIL_USE_TLS=false
 $ source ./venv/bin/activate
 ```
 
+Note that for safety reason, environment variables should be protected from other processes. In this guide environment variable have been exported, in a production environment, the parsec backend execution and environment variable definition can be wrapped into a single executable file (with user access restriction) to be sure that the environment variable will be accessible only by the PARSEC backend. 
+
 If the postgresql database is new (or if it's the first time parsec runs), the database tables need to be created. This can also be run after a parsec server update:
 
 ```shell
