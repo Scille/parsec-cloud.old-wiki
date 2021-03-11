@@ -396,7 +396,7 @@ PARSEC_EMAIL_USE_TLS=false
 $ source ./venv/bin/activate
 ```
 
-Note that for safety reason, environment variables should be protected. In this guide environment variable have been exported from the shell (it means those commands appears in command history and persist in the shell environment). In a production environment, the parsec backend environment variable should be protected by the system mechanism.
+Note that for safety reason, environment variables should be protected. In this guide environment variables have been exported from the shell (it means those commands appears in command history and persist in the shell environment). In a production environment, the parsec backend environment variables containing password should be protected by the system mechanism.
 
 If the postgresql database is new (or if it's the first time parsec runs), the database tables need to be created. This can also be run after a parsec server update:
 
@@ -477,7 +477,10 @@ It will then be the responsibility of this first user to invite their first coll
 Optional: Nginx configuration example
 ---------------
 
-It is recommanded to run the Parsec metaserver behind a nginx reverse proxy. Here a basic example of the nginx configurration.
+It is recommended to run the Parsec metaserver behind a reverse proxy like [NGINX](http://nginx.org/en/docs), [configured as an HTTPS server](http://nginx.org/en/docs/http/configuring_https_servers.html). 
+
+Here is a basic example of the nginx installation and configuration using self-signed certificate. The configuration shall be edited depending of your network infrastructure. 
+
 Install `nginx`:
 ```bash
 $ sudo apt-get install nginx -y
