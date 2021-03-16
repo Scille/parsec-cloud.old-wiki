@@ -11,6 +11,7 @@ This guide covers the installation procedure for the [parsec][parsec] metadata s
 8. [Start the parsec server](#start-the-parsec-server)
 9. [Create an organization](#create-an-organization)
 10. [Optional: Nginx configuration example](#optional-nginx-configuration-example)
+11. [Optional: PARSEC metaserver as systemd service](#optional-parsec-metaserver-as-systemd-service)
 
 
 Preamble
@@ -423,7 +424,9 @@ Containers are now up and running and parsec metadataserver is now running. Data
 ```
 docker start CONTAINER_ID
 ```
-For service persistance and automatic restart, please refer to [the official documentation](https://docs.docker.com/config/containers/start-containers-automatically/#use-a-process-manager)
+For docker service persistence and automatic restart, please refer to [the official documentation](https://docs.docker.com/config/containers/start-containers-automatically/#use-a-process-manager)
+
+The PARSEC metadata server can be started as a systemd service (see [Optional: PARSEC metaserver as systemd service](#optional-parsec-metaserver-as-systemd-service) ).
 
 
 Create an organization
@@ -524,10 +527,58 @@ $ sudo systemctl stop nginx
 $ sudo systemctl start nginx
 ```
 
+Optional: PARSEC metaserver as systemd service
+--------------
+The metadata server can be started as a systemd service (see [systemd documentation](https://systemd.io/) )
 
+Create a systemd file:
+```
+sudo touch /etc/systemd/system/parsec.service
+```
 
+Here an example of a possible systemd parsec.service file:
+```
+[Unit]
+Description=The parsec metadata server.
 
+[Service]
+Environment="PARSEC_HOST=localhost"
+Environment="PARSEC_PORT=6777"
+Environment="PARSEC_BLOCKSTORE=s3:localhost\:4566:region1:parsec:user:password"
+Environment="PARSEC_BACKEND_ADDR=parsec://localhost:6777"
+Environment="PARSEC_DB=postgresql://parsec:DBPASS@localhost:5435/parsec"
+Environment="PARSEC_ADMINISTRATION_TOKEN=s3cr3t"
+Environment="PARSEC_SSL_KEYFILE=/home/user/ssl-testing/parsec.test.key"
+Environment="PARSEC_SSL_CERTFILE=/home/user/ssl-testing/parsec.test.cert"
+Environment="PARSEC_EMAIL_HOST=localhost"
+Environment="PARSEC_EMAIL_PORT=1025"
+Environment="PARSEC_EMAIL_SENDER=parsec@my-company.com"
+Environment="PARSEC_EMAIL_HOST_USER=dummy-user"
+Environment="PARSEC_EMAIL_HOST_PASSWORD=dummy-password"
+Environment="PARSEC_EMAIL_USE_SSL=false"
+Environment="PARSEC_EMAIL_USE_TLS=false"
+ExecStart=set -a;source /home/user/venv/bin/activate;parsec backend run
+```
+Once the service file is changed, it needs to reload systemd configuration:
+```
+ $ sudo systemctl daemon-reload
+```
 
+The service can now be started
+```
+$ sudo systemctl start parsec
+$ systemctl status parsec
+```
+
+To configure a service to start automatically on boot, you need to enable it:
+```
+$ sudo systemctl enable parsec
+```
+
+To check the service logs, run:
+```
+$ journalctl -u parsec
+```
 [parsec]: https://parsec.cloud/en
 [docker]: https://www.docker.com/
 [postgresql]: https://www.postgresql.org/
