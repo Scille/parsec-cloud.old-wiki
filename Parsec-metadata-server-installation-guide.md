@@ -28,7 +28,15 @@ From a security standpoint, the installation of those components is outside the 
 
 As configuring those components properly can be tedious, this guide provides instructions for quickly setting up mockups or basic install for the required services. Keep in mind that those instructions are provided for convenience and should not be used in production.
 
-Please note that this installation guide requires root privileges. The metadata server itself does not require root privileges.
+Please note that this installation guide requires root privileges. The metadata server itself does not require root privileges. Parsec can be installed in the current logged in user or you can create a dedicated user for the metadata server (recommended):
+```
+$ sudo useradd -m parsec-server
+$ sudo su - parsec-server
+$ cd /home/parsec-server
+```
+Note that this user does not have sudo access, you will need to use the root account to run sudo operation.
+Also note that this guide refere to the current user home directory as `/home/user`, you need to replace it by `/home/parsec-server` or the current user home directory if you do not use the parsec-server user.
+
 
 Those mockups are meant to run in [docker containers][docker]. In order to [install docker](https://snapcraft.io/install/docker/ubuntu) using [snap](https://snapcraft.io/), please use the following commands:
 
