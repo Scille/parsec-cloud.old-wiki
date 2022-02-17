@@ -7,6 +7,10 @@ Requirements
 Installation
 ------------
 
+Install conda: https://docs.conda.io/en/latest/miniconda.html
+% conda create parsec
+% conda activate parsec
+
 From pypi:
 
 ```console
@@ -34,6 +38,7 @@ Using pytest:
 % pytest --runmountpoint  # Include mountpoint tests
 % pytest --rungui         # Include GUI tests
 % pytest --runslow        # Include slow tests
+% pytest --runrust        # Include rust tests
 ```
 
 Install `pytest-xvfb` to hide the Qt windows when running the GUI tests
