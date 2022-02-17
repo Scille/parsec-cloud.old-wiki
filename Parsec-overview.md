@@ -8,8 +8,10 @@ Installation
 ------------
 
 Install conda: https://docs.conda.io/en/latest/miniconda.html
+```console
 % conda create parsec
 % conda activate parsec
+```
 
 From pypi:
 
