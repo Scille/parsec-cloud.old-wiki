@@ -1,7 +1,7 @@
 Requirements
 ------------
 
-- Python >= 3.6
+- Python == 3.9
 
 
 Installation
@@ -9,7 +9,7 @@ Installation
 
 Install conda: https://docs.conda.io/en/latest/miniconda.html
 ```console
-% conda create -n parsec
+% conda create -n parsec python=3.9
 % conda activate parsec
 ```
 
