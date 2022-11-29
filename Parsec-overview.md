@@ -16,7 +16,7 @@ Install conda: https://docs.conda.io/en/latest/miniconda.html
 From pypi:
 
 ```console
-% pip3 install parsec[all]
+% poetry install parsec[all]
 % pip3 install parsec[core] # Core only
 % pip3 install parsec[backend] # Backend only
 ```
@@ -26,7 +26,7 @@ From sources:
 ```console
 % git clone https://github.com/Scille/parsec-cloud.git
 % cd parsec-cloud
-% pip3 install -e .[all]
+% poetry install -E core -E backend
 % python setup.py generate_pyqt
 ```
 
