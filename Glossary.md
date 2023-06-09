@@ -9,7 +9,7 @@
 |Device / Appareil|-|The device(s) registered by the user to access their organization(s), each device is linked to a singular user for a specific organization.|Workspace, User|
 |File / Fichier|-|
 |Folder / Dossier|-|||Directory|
-|Onboard / Accueil|to onboard / accueillir|The onboarding process happens after an invitation, and is |||
+|Onboard / Accueil|to onboard / accueillir|The onboarding process happens after an invitation |||
 |Invitation / Invitation|to invite / inviter|Getting a new user into a given organization|The onboarding process: this is specifically used for the part where both the host and the new user are connected simultaneously to exchange information in order to finalize the invitation<br>Adding a device: invitation is specifically used for users, the term "adding" should be used instead for devices|Enroll, Enlist, Onboard, Greet, Join|
 |Joining / Rejoindre|-|A new user joins an existing organization.|The onboarding process / invitation||
 |Owner / Propriétaire|-|A workspace owner, with manager rights.|Organization roles: Standard User, Administrator, Outsider||
